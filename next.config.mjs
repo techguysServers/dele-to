@@ -25,6 +25,15 @@ const nextConfig = {
     unoptimized: true,
   },
   compress: true,
+  serverComponentsExternalPackages: ['@google-cloud/firestore'],
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push({
+        "@google-cloud/firestore": "commonjs @google-cloud/firestore",
+      })
+    }
+    return config
+  },
   async headers() {
     return [
       {

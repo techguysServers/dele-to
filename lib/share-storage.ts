@@ -1,6 +1,8 @@
 import { writeFile, readFile, mkdir } from "fs/promises"
 import { existsSync } from "fs"
 import path from "path"
+import type { Firestore, Timestamp } from "@google-cloud/firestore"
+import { createFirestoreClient, timestampFromMillis } from "@/lib/firestore-server"
 
 const DEBUG_ENABLED = process.env.DEBUG_ENABLED || false
 const log = DEBUG_ENABLED ? console.log : () => {}
@@ -9,6 +11,7 @@ const logWarn = DEBUG_ENABLED ? console.warn : () => {}
 
 const STORAGE_DIR = path.join(process.cwd(), ".secure-shares")
 const STORAGE_FILE = path.join(STORAGE_DIR, "shares.json")
+const COLLECTION_NAME = process.env.FIRESTORE_COLLECTION || "shares"
 
 export interface ShareData {
   id: string
@@ -30,44 +33,58 @@ interface FileStorage {
   }
 }
 
-let redis: any = null
-let redisInitialized = false
+interface FirestoreShareDoc extends ShareData {
+  expireAt: Timestamp
+}
 
-async function initRedis() {
-  if (redisInitialized) return redis
+let firestore: Firestore | null = null
+let firestoreInitialized = false
+let useFirestore = false
+
+function isCloudRun(): boolean {
+  return Boolean(process.env.K_SERVICE)
+}
+
+function shouldUseFirestore(): boolean {
+  if (process.env.USE_FILE_STORAGE === "true") return false
+  if (process.env.FIRESTORE_EMULATOR_HOST) return true
+  if (isCloudRun()) return true
+  if (process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT) return true
+  return false
+}
+
+export function keyToDocId(key: string): string {
+  return key.startsWith("share:") ? key.slice(6) : key
+}
+
+async function initFirestore(): Promise<Firestore | null> {
+  if (firestoreInitialized) return firestore
+
+  firestoreInitialized = true
+  useFirestore = shouldUseFirestore()
+
+  if (!useFirestore) {
+    log("📁 Using local file storage (set GOOGLE_CLOUD_PROJECT or run on Cloud Run for Firestore)")
+    return null
+  }
 
   try {
-    const redisUrl =
-      process.env.UPSTASH_REDIS_REST_URL ||
-      process.env.KV_REST_API_URL ||
-      process.env.REDIS_URL
+    const projectId =
+      process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT
 
-    const redisToken =
-      process.env.UPSTASH_REDIS_REST_TOKEN ||
-      process.env.KV_REST_API_TOKEN ||
-      process.env.UPSTASH_REDIS_REST_TOKEN
-
-    if (redisUrl && redisToken) {
-      const { Redis } = await import("@upstash/redis")
-
-      redis = new Redis({
-        url: redisUrl,
-        token: redisToken,
-      })
-
-      const pingResult = await redis.ping()
-      log("✅ Redis initialized successfully, ping result:", pingResult)
-      redisInitialized = true
-      return redis
-    } else {
-      log("⚠️ No Redis credentials found in environment variables")
-    }
+    firestore = createFirestoreClient(projectId)
+    await firestore.collection(COLLECTION_NAME).limit(1).get()
+    log("✅ Firestore initialized successfully")
+    return firestore
   } catch (error) {
-    logWarn("❌ Redis initialization failed:", error)
-    redis = null
-    redisInitialized = true
+    logError("❌ Firestore initialization failed:", error)
+    firestore = null
+    useFirestore = false
+    if (isCloudRun()) {
+      throw new Error("Firestore is required on Cloud Run but failed to initialize")
+    }
+    return null
   }
-  return null
 }
 
 async function ensureStorageDir() {
@@ -119,6 +136,66 @@ async function saveFileStorage(storage: FileStorage): Promise<void> {
   }
 }
 
+function isExpired(expiresAtMs: number): boolean {
+  return expiresAtMs <= Date.now()
+}
+
+async function storeInFirestore(
+  key: string,
+  data: ShareData,
+  expiresAtMs: number,
+): Promise<boolean> {
+  const db = await initFirestore()
+  if (!db) return false
+
+  try {
+    const doc: FirestoreShareDoc = {
+      ...data,
+      expireAt: timestampFromMillis(expiresAtMs),
+    }
+    await db.collection(COLLECTION_NAME).doc(keyToDocId(key)).set(doc)
+    return true
+  } catch (error) {
+    logError("❌ Firestore storage failed:", error)
+    return false
+  }
+}
+
+async function getFromFirestore(key: string): Promise<ShareData | null> {
+  const db = await initFirestore()
+  if (!db) return null
+
+  try {
+    const snapshot = await db.collection(COLLECTION_NAME).doc(keyToDocId(key)).get()
+    if (!snapshot.exists) return null
+
+    const doc = snapshot.data() as FirestoreShareDoc
+    const expiresAtMs = doc.expireAt.toMillis()
+
+    if (isExpired(expiresAtMs)) {
+      await db.collection(COLLECTION_NAME).doc(keyToDocId(key)).delete()
+      return null
+    }
+
+    const { expireAt: _, ...share } = doc
+    return share
+  } catch (error) {
+    logError("❌ Firestore get failed:", error)
+    return null
+  }
+}
+
+async function deleteFromFirestore(key: string): Promise<void> {
+  const db = await initFirestore()
+  if (!db) return
+
+  try {
+    await db.collection(COLLECTION_NAME).doc(keyToDocId(key)).delete()
+  } catch (error) {
+    logError("❌ Firestore delete failed:", error)
+  }
+}
+
 export async function storeData(
   key: string,
   data: ShareData,
@@ -127,55 +204,32 @@ export async function storeData(
   log(`📦 Storing data with key: ${key}, ID: ${data.id}, TTL: ${ttlSeconds}s`)
 
   const expiresAt = Date.now() + ttlSeconds * 1000
-  let redisStored = false
+  let firestoreStored = false
   let fileStored = false
 
-  const redisClient = await initRedis()
+  firestoreStored = await storeInFirestore(key, data, expiresAt)
 
-  if (redisClient) {
+  if (!useFirestore && !isCloudRun()) {
     try {
-      const safeTtl = Math.max(300, Math.min(ttlSeconds, 7 * 24 * 60 * 60))
-      await redisClient.setex(key, safeTtl, JSON.stringify(data))
-      redisStored = true
+      const fileStorage = await loadFileStorage()
+      fileStorage[key] = { data, expiresAt }
+      await saveFileStorage(fileStorage)
+      fileStored = true
     } catch (error) {
-      logError("❌ Redis storage failed:", error)
+      logError("❌ File storage failed:", error)
     }
   }
 
-  try {
-    const fileStorage = await loadFileStorage()
-    fileStorage[key] = { data, expiresAt }
-    await saveFileStorage(fileStorage)
-    fileStored = true
-  } catch (error) {
-    logError("❌ File storage failed:", error)
-  }
-
-  return redisStored || fileStored
+  return firestoreStored || fileStored
 }
 
 export async function getData(key: string): Promise<ShareData | null> {
   log(`🔍 Retrieving data with key: ${key}`)
 
-  const redisClient = await initRedis()
-
-  if (redisClient) {
-    try {
-      const result = await redisClient.get(key)
-      if (result) {
-        let parsed: any
-        if (typeof result === "string") {
-          parsed = JSON.parse(result)
-        } else if (typeof result === "object" && result !== null) {
-          parsed = result
-        } else {
-          throw new Error(`Unexpected Redis result type: ${typeof result}`)
-        }
-        return parsed as ShareData
-      }
-    } catch (error) {
-      logError("❌ Redis get failed:", error)
-    }
+  if (useFirestore || shouldUseFirestore()) {
+    const share = await getFromFirestore(key)
+    if (share) return share
+    if (useFirestore) return null
   }
 
   try {
@@ -200,24 +254,18 @@ export async function getData(key: string): Promise<ShareData | null> {
 export async function deleteData(key: string): Promise<void> {
   log(`🗑️ Deleting data with key: ${key}`)
 
-  const redisClient = await initRedis()
+  await deleteFromFirestore(key)
 
-  if (redisClient) {
+  if (!useFirestore && !isCloudRun()) {
     try {
-      await redisClient.del(key)
+      const fileStorage = await loadFileStorage()
+      if (fileStorage[key]) {
+        delete fileStorage[key]
+        await saveFileStorage(fileStorage)
+      }
     } catch (error) {
-      logError("❌ Redis delete failed:", error)
+      logError("❌ File storage delete failed:", error)
     }
-  }
-
-  try {
-    const fileStorage = await loadFileStorage()
-    if (fileStorage[key]) {
-      delete fileStorage[key]
-      await saveFileStorage(fileStorage)
-    }
-  } catch (error) {
-    logError("❌ File storage delete failed:", error)
   }
 }
 
@@ -230,22 +278,15 @@ export async function updateData(
 
   const expiresAt = Date.now() + ttlSeconds * 1000
 
-  const redisClient = await initRedis()
+  await storeInFirestore(key, data, expiresAt)
 
-  if (redisClient) {
+  if (!useFirestore && !isCloudRun()) {
     try {
-      const safeTtl = Math.max(300, Math.min(ttlSeconds, 7 * 24 * 60 * 60))
-      await redisClient.setex(key, safeTtl, JSON.stringify(data))
+      const fileStorage = await loadFileStorage()
+      fileStorage[key] = { data, expiresAt }
+      await saveFileStorage(fileStorage)
     } catch (error) {
-      logError("❌ Redis update failed:", error)
+      logError("❌ File storage update failed:", error)
     }
-  }
-
-  try {
-    const fileStorage = await loadFileStorage()
-    fileStorage[key] = { data, expiresAt }
-    await saveFileStorage(fileStorage)
-  } catch (error) {
-    logError("❌ File storage update failed:", error)
   }
 }
