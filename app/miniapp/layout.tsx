@@ -4,8 +4,12 @@ import { GeistMono } from 'geist/font/mono'
 import '../globals.css'
 
 export const metadata: Metadata = {
-    title: 'DELE.TO MiniApp | Secure Credential Sharing',
+    title: 'Techguys - Partage de secrets',
     description: 'Secure credential sharing with client-side AES-256 encryption - Farcaster MiniApp',
+    robots: {
+        index: false,
+        follow: false,
+    },
     icons: {
         icon: '/favicon.ico',
     },

@@ -59,6 +59,10 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: '',
           },
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive, nosnippet',
+          },
         ],
       },
     ]
