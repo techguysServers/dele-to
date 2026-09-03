@@ -36,3 +36,5 @@ Thumbs.db
 
 # Secure shares storage
 .secure-shares/
+
+techguys-interne-*.json
