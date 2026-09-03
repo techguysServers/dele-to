@@ -43,13 +43,6 @@ export const metadata: Metadata = {
 		"fc:miniapp:splashImageUrl": "https://dele.to/favicon.png",
 		"fc:miniapp:splashBackgroundColor": "#f8fafc",
 		"fc:miniapp:manifest": "https://dele.to/.well-known/farcaster.json",
-		"og:title": "Techguys - Partage de secrets",
-		"og:description": "Secure credential sharing with client-side AES-256 encryption",
-		"og:image": "https://dele.to/SEO.png",
-		"twitter:card": "summary_large_image",
-		"twitter:title": "Techguys - Partage de secrets",
-		"twitter:description": "Secure credential sharing with client-side AES-256 encryption",
-		"twitter:image": "https://dele.to/SEO.png",
 	},
 };
 
