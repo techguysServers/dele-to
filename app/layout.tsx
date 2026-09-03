@@ -34,16 +34,6 @@ export const metadata: Metadata = {
 		description: "Secure credential sharing with client-side AES-256 encryption",
 		images: ["/SEO.png"],
 	},
-	other: {
-		"fc:miniapp": "vNext",
-		"fc:miniapp:name": "DELE.TO",
-		"fc:miniapp:icon": "https://dele.to/favicon.png",
-		"fc:miniapp:url": "https://dele.to/miniapp",
-		"fc:miniapp:buttonTitle": "🔒 Share Securely",
-		"fc:miniapp:splashImageUrl": "https://dele.to/favicon.png",
-		"fc:miniapp:splashBackgroundColor": "#f8fafc",
-		"fc:miniapp:manifest": "https://dele.to/.well-known/farcaster.json",
-	},
 };
 
 export default function RootLayout({

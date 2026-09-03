@@ -34,7 +34,7 @@ const notFoundMessages = [
   {
     title: "File Shredded.",
     description: "We triple-checked. The bits are gone. The bytes are gone. Even the crumbs are gone.",
-    buttonText: "Back to DELE.TO",
+    buttonText: "Back to Techguys",
     emoji: "🪓"
   },
   {
@@ -70,7 +70,7 @@ const notFoundMessages = [
   {
     title: "Digital ashes remain.",
     description: "The data? Gone. The URL? Gone. Your curiosity? Still here.",
-    buttonText: "Back to DELE.TO",
+    buttonText: "Back to Techguys",
     emoji: "🌫️"
   },
   {
@@ -152,7 +152,7 @@ export default function NotFound() {
             <div className="mt-8 p-4 rounded-lg bg-red-50 border border-red-600">
               <p className="text-sm text-red-700">
                 <strong>Lost?</strong> Don't worry, your secrets are still safe. 
-                This page just followed DELE.TO's philosophy and self-destructed.
+                This page just self-destructed.
               </p>
             </div>
           </CardContent>

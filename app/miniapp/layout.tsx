@@ -11,11 +11,7 @@ export const metadata: Metadata = {
         follow: false,
     },
     icons: {
-        icon: '/favicon.ico',
-    },
-    other: {
-        'fc:miniapp': 'vNext',
-        'fc:miniapp:manifest': '/.well-known/farcaster.json',
+        icon: '/favicon.png',
     },
 }
 

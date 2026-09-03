@@ -6,10 +6,10 @@ import Link from "next/link"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DELE.TO - Alternative to PasswordPusher',
-  description: 'DELE.TO offers true zero-knowledge security as an alternative to PasswordPusher. Client-side encryption, password protection, and modern UI.',
+  title: 'Techguys - Alternative to PasswordPusher',
+  description: 'Techguys offers true zero-knowledge security as an alternative to PasswordPusher. Client-side encryption, password protection, and modern UI.',
   openGraph: {
-    title: 'DELE.TO - Alternative to PasswordPusher',
+    title: 'Techguys - Alternative to PasswordPusher',
     description: 'True zero-knowledge alternative to PasswordPusher with client-side encryption and superior privacy protection.',
     images: ['/SEO.png'],
   },
@@ -20,13 +20,13 @@ const comparisonData = [
     feature: "Client-Side Encryption",
     deleto: true,
     passwordpusher: false,
-    details: "DELE.TO encrypts in browser, PasswordPusher encrypts on server"
+    details: "Techguys encrypts in browser, PasswordPusher encrypts on server"
   },
   {
     feature: "Zero-Knowledge Architecture",
     deleto: true,
     passwordpusher: false,
-    details: "DELE.TO never sees your data, PasswordPusher processes it server-side"
+    details: "Techguys never sees your data, PasswordPusher processes it server-side"
   },
   {
     feature: "Custom Expiration Times",
@@ -44,37 +44,37 @@ const comparisonData = [
     feature: "Password Protection",
     deleto: true,
     passwordpusher: true,
-    details: "DELE.TO adds optional password layer"
+    details: "Techguys adds optional password layer"
   },
   {
     feature: "Modern UI/UX",
     deleto: true,
     passwordpusher: false,
-    details: "DELE.TO has more modern, polished interface"
+    details: "Techguys has more modern, polished interface"
   },
   {
     feature: "Mobile Responsive",
     deleto: true,
     passwordpusher: "partial",
-    details: "DELE.TO fully optimized for mobile"
+    details: "Techguys fully optimized for mobile"
   },
   {
     feature: "File Sharing",
     deleto: "coming-soon",
     passwordpusher: true,
-    details: "PasswordPusher supports file uploads, DELE.TO coming soon"
+    details: "PasswordPusher supports file uploads, Techguys coming soon"
   },
   {
     feature: "URL Sharing",
     deleto: "coming-soon",
     passwordpusher: true,
-    details: "PasswordPusher can share URLs securely, DELE.TO coming soon"
+    details: "PasswordPusher can share URLs securely, Techguys coming soon"
   },
   {
     feature: "Self-Hosted Option",
     deleto: true,
     passwordpusher: true,
-    details: "PasswordPusher available now, DELE.TO coming soon"
+    details: "PasswordPusher available now, Techguys coming soon"
   },
   {
     feature: "Open Source",
@@ -86,7 +86,7 @@ const comparisonData = [
     feature: "Multi-Recipient Sharing",
     deleto: true,
     passwordpusher: false,
-    details: "DELE.TO supports sharing to multiple recipients"
+    details: "Techguys supports sharing to multiple recipients"
   },
   {
     feature: "API Access",
@@ -113,7 +113,7 @@ export default function PasswordPusherComparison() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              DELE.TO - Alternative to PasswordPusher
+              Techguys - Alternative to PasswordPusher
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Comparing client-side vs server-side encryption approaches. Both are popular,
@@ -131,7 +131,7 @@ export default function PasswordPusherComparison() {
             </CardHeader>
             <CardContent>
               <p className="text-amber-800">
-                <strong>DELE.TO</strong> encrypts your data in your browser before sending it anywhere (zero-knowledge).
+                <strong>Techguys</strong> encrypts your data in your browser before sending it anywhere (zero-knowledge).
                 <strong> PasswordPusher</strong> receives your plaintext data and encrypts it on their servers.
                 This is a fundamental architectural difference that affects your privacy.
               </p>
@@ -147,7 +147,7 @@ export default function PasswordPusherComparison() {
                     <Flame className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle>DELE.TO</CardTitle>
+                    <CardTitle>Techguys</CardTitle>
                     <CardDescription>Zero-knowledge, client-side encryption</CardDescription>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export default function PasswordPusherComparison() {
                   <div className="pt-2">
                     <Link href="/create">
                       <Button style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                        Try DELE.TO
+                        Try Techguys
                       </Button>
                     </Link>
                   </div>
@@ -221,7 +221,7 @@ export default function PasswordPusherComparison() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-medium">Feature</th>
-                      <th className="text-center py-3 px-4 font-medium">DELE.TO</th>
+                      <th className="text-center py-3 px-4 font-medium">Techguys</th>
                       <th className="text-center py-3 px-4 font-medium">PasswordPusher</th>
                       <th className="text-left py-3 px-4 font-medium">Details</th>
                     </tr>
@@ -270,7 +270,7 @@ export default function PasswordPusherComparison() {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>DELE.TO: Zero-Knowledge</h4>
+                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>Techguys: Zero-Knowledge</h4>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold" style={{ backgroundColor: '#D2461E' }}>1</div>
@@ -330,7 +330,7 @@ export default function PasswordPusherComparison() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle style={{ color: '#D2461E' }}>Choose DELE.TO if you:</CardTitle>
+                <CardTitle style={{ color: '#D2461E' }}>Choose Techguys if you:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
@@ -397,13 +397,13 @@ export default function PasswordPusherComparison() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  The choice between DELE.TO and PasswordPusher comes down to your security requirements and feature needs:
+                  The choice between Techguys and PasswordPusher comes down to your security requirements and feature needs:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 rounded-lg" style={{ backgroundColor: '#FDF2F2', borderColor: '#D2461E', borderWidth: '1px' }}>
                     <h4 className="font-semibold mb-2" style={{ color: '#8B1A00' }}>For Maximum Security</h4>
                     <p className="text-sm" style={{ color: '#B91C1C' }}>
-                      Choose DELE.TO if privacy is your top priority. Zero-knowledge architecture with file sharing coming soon.
+                      Choose Techguys if privacy is your top priority. Zero-knowledge architecture with file sharing coming soon.
                     </p>
                   </div>
                   <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">

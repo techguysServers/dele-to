@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   // Return frame metadata for GET requests
   return NextResponse.json({
-    name: 'DELE.TO',
+    name: 'Techguys',
     description: 'Secure credential sharing with client-side AES-256 encryption',
     image: '/SEO.png',
     button: {

@@ -6,10 +6,10 @@ import Link from "next/link"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DELE.TO - Alternative to Yopass for Secure Password Sharing',
-  description: 'DELE.TO is a modern alternative to Yopass with zero-knowledge encryption, password protection, and mobile-first design. Compare features and security.',
+  title: 'Techguys - Alternative to Yopass for Secure Password Sharing',
+  description: 'Techguys is a modern alternative to Yopass with zero-knowledge encryption, password protection, and mobile-first design. Compare features and security.',
   openGraph: {
-    title: 'DELE.TO - Alternative to Yopass for Secure Password Sharing',
+    title: 'Techguys - Alternative to Yopass for Secure Password Sharing',
     description: 'Modern alternative to Yopass with zero-knowledge encryption, password protection, and superior user experience.',
     images: ['/SEO.png'],
   },
@@ -44,31 +44,31 @@ const comparisonData = [
     feature: "Password Protection",
     deleto: true,
     yopass: false,
-    details: "DELE.TO adds optional password layer"
+    details: "Techguys adds optional password layer"
   },
   {
     feature: "Modern UI/UX",
     deleto: true,
     yopass: false,
-    details: "DELE.TO has more polished interface"
+    details: "Techguys has more polished interface"
   },
   {
     feature: "Mobile Responsive",
     deleto: true,
     yopass: "partial",
-    details: "DELE.TO fully optimized for mobile"
+    details: "Techguys fully optimized for mobile"
   },
   {
     feature: "File Sharing",
     deleto: "coming-soon",
     yopass: true,
-    details: "Yopass supports file uploads, DELE.TO coming soon"
+    details: "Yopass supports file uploads, Techguys coming soon"
   },
   {
     feature: "Self-Hosted Option",
     deleto: true,
     yopass: true,
-    details: "Yopass available now, DELE.TO coming soon"
+    details: "Yopass available now, Techguys coming soon"
   },
   {
     feature: "Open Source",
@@ -80,7 +80,7 @@ const comparisonData = [
     feature: "Multi-Recipient Sharing",
     deleto: true,
     yopass: false,
-    details: "DELE.TO supports sharing to multiple recipients"
+    details: "Techguys supports sharing to multiple recipients"
   }
 ]
 
@@ -101,7 +101,7 @@ export default function YopassComparison() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              DELE.TO - Alternative to Yopass
+              Techguys - Alternative to Yopass
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Comparing two popular secure password sharing solutions. Both offer client-side encryption, 
@@ -118,7 +118,7 @@ export default function YopassComparison() {
                     <Flame className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle>DELE.TO</CardTitle>
+                    <CardTitle>Techguys</CardTitle>
                     <CardDescription>Modern, user-focused design</CardDescription>
                   </div>
                 </div>
@@ -136,7 +136,7 @@ export default function YopassComparison() {
                   <div className="pt-2">
                     <Link href="/create">
                       <Button style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                        Try DELE.TO
+                        Try Techguys
                       </Button>
                     </Link>
                   </div>
@@ -192,7 +192,7 @@ export default function YopassComparison() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-medium">Feature</th>
-                      <th className="text-center py-3 px-4 font-medium">DELE.TO</th>
+                      <th className="text-center py-3 px-4 font-medium">Techguys</th>
                       <th className="text-center py-3 px-4 font-medium">Yopass</th>
                       <th className="text-left py-3 px-4 font-medium">Details</th>
                     </tr>
@@ -234,7 +234,7 @@ export default function YopassComparison() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle style={{ color: '#D2461E' }}>Choose DELE.TO if you:</CardTitle>
+                <CardTitle style={{ color: '#D2461E' }}>Choose Techguys if you:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
@@ -304,7 +304,7 @@ export default function YopassComparison() {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-3" style={{ color: '#D2461E' }}>DELE.TO Security</h4>
+                  <h4 className="font-semibold mb-3" style={{ color: '#D2461E' }}>Techguys Security</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li>• AES-256-GCM client-side encryption</li>
                     <li>• Keys in URL fragments (never sent to server)</li>
@@ -335,13 +335,13 @@ export default function YopassComparison() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  Both DELE.TO and Yopass are excellent choices for secure password sharing. Your choice depends on your specific needs:
+                  Both Techguys and Yopass are excellent choices for secure password sharing. Your choice depends on your specific needs:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 rounded-lg" style={{ backgroundColor: '#FDF2F2', borderColor: '#D2461E', borderWidth: '1px' }}>
                     <h4 className="font-semibold mb-2" style={{ color: '#8B1A00' }}>For Modern Teams</h4>
                     <p className="text-sm" style={{ color: '#B91C1C' }}>
-                      Choose DELE.TO for its polished interface, mobile optimization, and additional security features like password protection.
+                      Choose Techguys for its polished interface, mobile optimization, and additional security features like password protection.
                     </p>
                   </div>
                   <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -358,7 +358,7 @@ export default function YopassComparison() {
           <div className="text-center mt-12">
             <Link href="/create">
               <Button size="lg" style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                Try DELE.TO Now
+                Try Techguys Now
               </Button>
             </Link>
           </div>

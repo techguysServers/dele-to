@@ -20,7 +20,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Zero-Knowledge Security Architecture</h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Understanding the advanced security and encryption behind DELE.TO
+              Understanding the advanced security and encryption behind Techguys
             </p>
           </div>
 

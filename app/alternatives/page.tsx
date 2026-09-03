@@ -6,10 +6,10 @@ import Link from "next/link"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DELE.TO - Alternative to Yopass, PasswordPusher, PrivateBin & OneTimeSecret',
-  description: 'DELE.TO is the modern alternative to popular secure sharing tools. Zero-knowledge encryption, password protection, and superior UX.',
+  title: 'Techguys - Alternative to Yopass, PasswordPusher, PrivateBin & OneTimeSecret',
+  description: 'Techguys is the modern alternative to popular secure sharing tools. Zero-knowledge encryption, password protection, and superior UX.',
   openGraph: {
-    title: 'DELE.TO - Alternative to Popular Password Sharing Tools',
+    title: 'Techguys - Alternative to Popular Password Sharing Tools',
     description: 'Modern alternative to Yopass, PasswordPusher, PrivateBin, OneTimeSecret and other secure sharing tools with zero-knowledge security.',
     images: ['/SEO.png'],
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const alternatives = [
   {
-    name: "DELE.TO",
+    name: "Techguys",
     description: "Modern zero-knowledge password sharing with client-side encryption",
     icon: Flame,
     color: "#D2461E",
@@ -123,7 +123,7 @@ export default function AlternativesPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              DELE.TO - Alternative to Popular Password Sharing Tools
+              Techguys - Alternative to Popular Password Sharing Tools
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Compare the top 5 secure password sharing tools. Find the perfect solution
@@ -145,7 +145,7 @@ export default function AlternativesPage() {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <CardTitle className="text-lg">{alt.name}</CardTitle>
-                          {alt.name === "DELE.TO" && (
+                          {alt.name === "Techguys" && (
                             <Badge style={{ backgroundColor: '#D2461E' }} className="text-white text-xs">
                               Recommended
                             </Badge>
@@ -193,7 +193,7 @@ export default function AlternativesPage() {
                         <strong>Best for:</strong> {alt.bestFor}
                       </div>
 
-                      {alt.name === "DELE.TO" && (
+                      {alt.name === "Techguys" && (
                         <Link href="/create">
                           <Button size="sm" style={{ backgroundColor: '#D2461E' }} className="w-full text-white hover:opacity-90">
                             Try Now
@@ -289,7 +289,7 @@ export default function AlternativesPage() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-2 font-medium">Feature</th>
-                      <th className="text-center py-3 px-2 font-medium">DELE.TO</th>
+                      <th className="text-center py-3 px-2 font-medium">Techguys</th>
                       <th className="text-center py-3 px-2 font-medium">Yopass</th>
                       <th className="text-center py-3 px-2 font-medium">PasswordPusher</th>
                       <th className="text-center py-3 px-2 font-medium">PrivateBin</th>
@@ -356,7 +356,7 @@ export default function AlternativesPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-medium">Best Choice: DELE.TO</p>
+                    <p className="font-medium">Best Choice: Techguys</p>
                     <p className="text-sm text-gray-600">Zero-knowledge security with professional UI</p>
                   </div>
                   <div>
@@ -378,7 +378,7 @@ export default function AlternativesPage() {
                     <p className="text-sm text-gray-600">Zero-knowledge with code sharing features</p>
                   </div>
                   <div>
-                    <p className="font-medium">Alternative: DELE.TO</p>
+                    <p className="font-medium">Alternative: Techguys</p>
                     <p className="text-sm text-gray-600">For maximum security and modern interface</p>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export default function AlternativesPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-medium">Best Choice: DELE.TO</p>
+                    <p className="font-medium">Best Choice: Techguys</p>
                     <p className="text-sm text-gray-600">
                       Perfect balance of security and usability
                     </p>
@@ -424,7 +424,7 @@ export default function AlternativesPage() {
                         <Flame className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <p className="font-medium">DELE.TO</p>
+                        <p className="font-medium">Techguys</p>
                         <p className="text-sm text-gray-600">Client-side AES-256-GCM encryption</p>
                       </div>
                     </div>
@@ -479,7 +479,7 @@ export default function AlternativesPage() {
           {/* Final Recommendation */}
           <Card>
             <CardHeader>
-              <CardTitle>Why Choose DELE.TO?</CardTitle>
+              <CardTitle>Why Choose Techguys?</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -517,7 +517,7 @@ export default function AlternativesPage() {
           <div className="text-center mt-12">
             <Link href="/create">
               <Button size="lg" style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                Try DELE.TO - The Secure Choice
+                Try Techguys - The Secure Choice
               </Button>
             </Link>
           </div>

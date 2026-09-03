@@ -20,7 +20,7 @@ export default function MiniAppPage() {
                                 <Flame className="w-8 h-8 text-white" />
                             </div>
                         </div>
-                        <h1 className="text-4xl font-bold text-gray-900 mb-2">DELE.TO</h1>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-2">Techguys</h1>
                         <p className="text-sm text-gray-500 italic mb-6">From Latin dēlētō — "erase, destroy."</p>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
                             Share sensitive credentials and secrets securely with client-side AES-256 encryption, zero-knowledge

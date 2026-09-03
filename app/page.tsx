@@ -8,18 +8,16 @@ export default function HomePage() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-4xl mx-auto">
-          <Link href="https://github.com/ardd/dele-to-deployed" target="_blank" rel="noopener noreferrer">
-            <span className="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/30 px-3 py-1 text-xs font-medium text-red-800 dark:text-red-300 ring-1 ring-inset ring-red-200 dark:ring-red-800 mb-6 hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors">
-              <Sparkles className="h-3 w-3 mr-1" /> Open source & zero-knowledge
+          <span className="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/30 px-3 py-1 text-xs font-medium text-red-800 dark:text-red-300 ring-1 ring-inset ring-red-200 dark:ring-red-800 mb-6">
+              <Sparkles className="h-3 w-3 mr-1" /> Zero-knowledge & chiffrement côté client
             </span>
-          </Link>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
             Share secrets
             <br />
             that <span className="text-red-600 dark:text-red-500 animate-disappear">disappear</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto hidden md:block">
-            Stop sharing passwords in Slack. DELE.TO encrypts everything in your browser.
+            Techguys chiffre tout dans votre navigateur.
             <br />Your secrets self-destruct after reading. No traces, no logs, no worries.
           </p>
           <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 mb-12">

@@ -35,15 +35,15 @@ export function ConsoleMessage() {
             const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)]
 
             console.log(`%c${randomMessage}`, 'color: #3b82f6; font-size: 14px; font-weight: bold; padding: 8px;')
-            console.log('%cDELE.TO - Built with ❤️ by Ardd', 'color: #6b7280; font-size: 12px;')
+            console.log('%cTechguys - Partage de secrets sécurisé', 'color: #6b7280; font-size: 12px;')
 
-            // Add some ASCII art for extra fun
             console.log(`
-   ____                           ____  _                     
-  / ___|  ___  ___ _   _ _ __ ___ / ___|| |__   __ _ _ __ ___ 
-  \\___ \\ / _ \\/ __| | | | '__/ _ \\\\___ \\| '_ \\ / _\` | '__/ _ \\
-   ___) |  __/ (__| |_| | | |  __/ ___) | | | | (_| | | |  __/
-  |____/ \\___|\\___|\\__,_|_|  \\___|____/|_| |_|\\__,_|_|  \\___|
+  ______          __             _            
+ /_  __/___  ____/ /_____  ___  (_)___  ___ 
+  / / / __ \\/ __  / ___/ / / / / / __ \\/ _ \\
+ / / / / / / /_/ / /  / /_/ / / / / / /  __/
+/_/ /_/ /_/\\__,_/_/   \\__, / /_/_/ /_/\\___/ 
+                     /____/                  
       `)
         }, 1000)
 

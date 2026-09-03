@@ -6,10 +6,10 @@ import Link from "next/link"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DELE.TO - Alternative to PrivateBin',
-  description: 'DELE.TO offers modern zero-knowledge security as an alternative to PrivateBin. Compare client-side encryption, password protection, and user experience.',
+  title: 'Techguys - Alternative to PrivateBin',
+  description: 'Techguys offers modern zero-knowledge security as an alternative to PrivateBin. Compare client-side encryption, password protection, and user experience.',
   openGraph: {
-    title: 'DELE.TO - Alternative to PrivateBin',
+    title: 'Techguys - Alternative to PrivateBin',
     description: 'Modern alternative to PrivateBin with zero-knowledge encryption, password protection, and superior user experience.',
     images: ['/SEO.png'],
   },
@@ -50,19 +50,19 @@ const comparisonData = [
     feature: "Modern UI/UX",
     deleto: true,
     privatebin: false,
-    details: "DELE.TO has more modern, polished interface"
+    details: "Techguys has more modern, polished interface"
   },
   {
     feature: "Mobile Responsive",
     deleto: true,
     privatebin: "partial",
-    details: "DELE.TO fully optimized for mobile"
+    details: "Techguys fully optimized for mobile"
   },
   {
     feature: "File Sharing",
     deleto: "coming-soon",
     privatebin: true,
-    details: "PrivateBin supports file uploads, DELE.TO coming soon"
+    details: "PrivateBin supports file uploads, Techguys coming soon"
   },
   {
     feature: "Syntax Highlighting",
@@ -74,7 +74,7 @@ const comparisonData = [
     feature: "Self-Hosted Option",
     deleto: true,
     privatebin: true,
-    details: "PrivateBin available now, DELE.TO coming soon"
+    details: "PrivateBin available now, Techguys coming soon"
   },
   {
     feature: "Open Source",
@@ -86,7 +86,7 @@ const comparisonData = [
     feature: "Multi-Recipient Sharing",
     deleto: true,
     privatebin: false,
-    details: "DELE.TO supports sharing to multiple recipients"
+    details: "Techguys supports sharing to multiple recipients"
   },
   {
     feature: "Discussion Feature",
@@ -113,7 +113,7 @@ export default function PrivateBinComparison() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              DELE.TO - Alternative to PrivateBin
+              Techguys - Alternative to PrivateBin
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Comparing two zero-knowledge secure sharing solutions. Both offer client-side encryption, 
@@ -131,7 +131,7 @@ export default function PrivateBinComparison() {
             </CardHeader>
             <CardContent>
               <p className="text-green-800">
-                Both <strong>DELE.TO</strong> and <strong>PrivateBin</strong> use client-side encryption with zero-knowledge architecture.
+                Both <strong>Techguys</strong> and <strong>PrivateBin</strong> use client-side encryption with zero-knowledge architecture.
                 Your data is encrypted in your browser before being sent to the server, ensuring maximum privacy.
                 The choice comes down to features, user experience, and intended use case.
               </p>
@@ -147,7 +147,7 @@ export default function PrivateBinComparison() {
                     <Flame className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle>DELE.TO</CardTitle>
+                    <CardTitle>Techguys</CardTitle>
                     <CardDescription>Modern, user-focused secret sharing</CardDescription>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export default function PrivateBinComparison() {
                   <div className="pt-2">
                     <Link href="/create">
                       <Button style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                        Try DELE.TO
+                        Try Techguys
                       </Button>
                     </Link>
                   </div>
@@ -221,7 +221,7 @@ export default function PrivateBinComparison() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-medium">Feature</th>
-                      <th className="text-center py-3 px-4 font-medium">DELE.TO</th>
+                      <th className="text-center py-3 px-4 font-medium">Techguys</th>
                       <th className="text-center py-3 px-4 font-medium">PrivateBin</th>
                       <th className="text-left py-3 px-4 font-medium">Details</th>
                     </tr>
@@ -270,7 +270,7 @@ export default function PrivateBinComparison() {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>DELE.TO: Modern Zero-Knowledge</h4>
+                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>Techguys: Modern Zero-Knowledge</h4>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold" style={{ backgroundColor: '#D2461E' }}>1</div>
@@ -330,7 +330,7 @@ export default function PrivateBinComparison() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle style={{ color: '#D2461E' }}>Choose DELE.TO if you:</CardTitle>
+                <CardTitle style={{ color: '#D2461E' }}>Choose Techguys if you:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
@@ -397,13 +397,13 @@ export default function PrivateBinComparison() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  Both DELE.TO and PrivateBin are excellent zero-knowledge solutions. Your choice depends on your primary use case:
+                  Both Techguys and PrivateBin are excellent zero-knowledge solutions. Your choice depends on your primary use case:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 rounded-lg" style={{ backgroundColor: '#FDF2F2', borderColor: '#D2461E', borderWidth: '1px' }}>
                     <h4 className="font-semibold mb-2" style={{ color: '#8B1A00' }}>For Password Sharing</h4>
                     <p className="text-sm" style={{ color: '#B91C1C' }}>
-                      Choose DELE.TO for its modern interface, mobile optimization, and focus on secure credential sharing.
+                      Choose Techguys for its modern interface, mobile optimization, and focus on secure credential sharing.
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
@@ -420,7 +420,7 @@ export default function PrivateBinComparison() {
           <div className="text-center mt-12">
             <Link href="/create">
               <Button size="lg" style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                Try DELE.TO for Secure Sharing
+                Try Techguys for Secure Sharing
               </Button>
             </Link>
           </div>

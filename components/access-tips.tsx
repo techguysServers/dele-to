@@ -32,7 +32,7 @@ const accessTips = [
     },
     {
         title: "Watch for Phishing",
-        description: "Verify the domain matches the expected DELE.TO instance. Attackers may create fake lookalikes."
+        description: "Verify the domain matches the expected Techguys instance. Attackers may create fake lookalikes."
     },
     {
         title: "One-Time Access",

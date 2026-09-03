@@ -6,10 +6,10 @@ import Link from "next/link"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DELE.TO - Alternative to OneTimeSecret',
-  description: 'DELE.TO offers true zero-knowledge security as an alternative to OneTimeSecret. Compare client-side vs server-side encryption approaches.',
+  title: 'Techguys - Alternative to OneTimeSecret',
+  description: 'Techguys offers true zero-knowledge security as an alternative to OneTimeSecret. Compare client-side vs server-side encryption approaches.',
   openGraph: {
-    title: 'DELE.TO - Alternative to OneTimeSecret',
+    title: 'Techguys - Alternative to OneTimeSecret',
     description: 'True zero-knowledge alternative to OneTimeSecret with client-side encryption and superior privacy protection.',
     images: ['/SEO.png'],
   },
@@ -20,13 +20,13 @@ const comparisonData = [
     feature: "Client-Side Encryption",
     deleto: true,
     onetimesecret: false,
-    details: "DELE.TO encrypts in browser, OneTimeSecret encrypts on server"
+    details: "Techguys encrypts in browser, OneTimeSecret encrypts on server"
   },
   {
     feature: "Zero-Knowledge Architecture",
     deleto: true,
     onetimesecret: false,
-    details: "DELE.TO never sees your data, OneTimeSecret processes it server-side"
+    details: "Techguys never sees your data, OneTimeSecret processes it server-side"
   },
   {
     feature: "Custom Expiration Times",
@@ -50,13 +50,13 @@ const comparisonData = [
     feature: "Modern UI/UX",
     deleto: true,
     onetimesecret: false,
-    details: "DELE.TO has more modern, polished interface"
+    details: "Techguys has more modern, polished interface"
   },
   {
     feature: "Mobile Responsive",
     deleto: true,
     onetimesecret: "partial",
-    details: "DELE.TO fully optimized for mobile"
+    details: "Techguys fully optimized for mobile"
   },
   {
     feature: "File Sharing",
@@ -74,7 +74,7 @@ const comparisonData = [
     feature: "Self-Hosted Option",
     deleto: true,
     onetimesecret: true,
-    details: "OneTimeSecret available now, DELE.TO coming soon"
+    details: "OneTimeSecret available now, Techguys coming soon"
   },
   {
     feature: "Open Source",
@@ -86,7 +86,7 @@ const comparisonData = [
     feature: "Multi-Recipient Sharing",
     deleto: true,
     onetimesecret: false,
-    details: "DELE.TO supports sharing to multiple recipients"
+    details: "Techguys supports sharing to multiple recipients"
   }
 ]
 
@@ -107,7 +107,7 @@ export default function OneTimeSecretComparison() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              DELE.TO - Alternative to OneTimeSecret
+              Techguys - Alternative to OneTimeSecret
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Comparing client-side vs server-side encryption approaches. Both are popular,
@@ -125,7 +125,7 @@ export default function OneTimeSecretComparison() {
             </CardHeader>
             <CardContent>
               <p className="text-amber-800">
-                <strong>DELE.TO</strong> encrypts your data in your browser before sending it anywhere (zero-knowledge).
+                <strong>Techguys</strong> encrypts your data in your browser before sending it anywhere (zero-knowledge).
                 <strong> OneTimeSecret</strong> receives your plaintext data and encrypts it on their servers.
                 This is a fundamental architectural difference that affects your privacy and security.
               </p>
@@ -141,7 +141,7 @@ export default function OneTimeSecretComparison() {
                     <Flame className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle>DELE.TO</CardTitle>
+                    <CardTitle>Techguys</CardTitle>
                     <CardDescription>Zero-knowledge, client-side encryption</CardDescription>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function OneTimeSecretComparison() {
                   <div className="pt-2">
                     <Link href="/create">
                       <Button style={{ backgroundColor: '#D2461E' }} className="text-white hover:opacity-90">
-                        Try DELE.TO
+                        Try Techguys
                       </Button>
                     </Link>
                   </div>
@@ -215,7 +215,7 @@ export default function OneTimeSecretComparison() {
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-medium">Feature</th>
-                      <th className="text-center py-3 px-4 font-medium">DELE.TO</th>
+                      <th className="text-center py-3 px-4 font-medium">Techguys</th>
                       <th className="text-center py-3 px-4 font-medium">OneTimeSecret</th>
                       <th className="text-left py-3 px-4 font-medium">Details</th>
                     </tr>
@@ -264,7 +264,7 @@ export default function OneTimeSecretComparison() {
             <CardContent>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>DELE.TO: Zero-Knowledge</h4>
+                  <h4 className="font-semibold text-lg" style={{ color: '#D2461E' }}>Techguys: Zero-Knowledge</h4>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 rounded-full text-white text-xs flex items-center justify-center font-bold" style={{ backgroundColor: '#D2461E' }}>1</div>
@@ -324,7 +324,7 @@ export default function OneTimeSecretComparison() {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle style={{ color: '#D2461E' }}>Choose DELE.TO if you:</CardTitle>
+                <CardTitle style={{ color: '#D2461E' }}>Choose Techguys if you:</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
@@ -392,13 +392,13 @@ export default function OneTimeSecretComparison() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  The choice between DELE.TO and OneTimeSecret comes down to your security requirements and feature needs:
+                  The choice between Techguys and OneTimeSecret comes down to your security requirements and feature needs:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-4 rounded-lg" style={{ backgroundColor: '#FDF2F2', borderColor: '#D2461E', borderWidth: '1px' }}>
                     <h4 className="font-semibold mb-2" style={{ color: '#8B1A00' }}>For Maximum Security</h4>
                     <p className="text-sm" style={{ color: '#B91C1C' }}>
-                      Choose DELE.TO if privacy is your top priority. Zero-knowledge architecture means your data is never exposed to the server.
+                      Choose Techguys if privacy is your top priority. Zero-knowledge architecture means your data is never exposed to the server.
                     </p>
                   </div>
                   <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
