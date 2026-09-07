@@ -37,7 +37,7 @@ export function QrCodeModal({ isOpen, onClose, url, title }: QrCodeModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Share via QR Code</DialogTitle>
+          <DialogTitle>Partager via code QR</DialogTitle>
         </DialogHeader>
         <div className="flex justify-center py-4" ref={qrRef}>
           <QRCodeCanvas value={url} size={256} bgColor={"#ffffff"} fgColor={"#000000"} level={"L"} includeMargin={true} />
@@ -45,7 +45,7 @@ export function QrCodeModal({ isOpen, onClose, url, title }: QrCodeModalProps) {
         <DialogFooter className="sm:justify-center">
           <Button onClick={downloadQRCode}>
             <Download className="w-4 h-4 mr-2" />
-            Download
+            Télécharger
           </Button>
         </DialogFooter>
       </DialogContent>

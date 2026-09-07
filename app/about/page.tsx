@@ -11,16 +11,16 @@ export default function AboutPage() {
           <Link href="/">
             <Button variant="ghost">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              Retour à l'accueil
             </Button>
           </Link>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Zero-Knowledge Security Architecture</h1>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Architecture de sécurité zero-knowledge</h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Understanding the advanced security and encryption behind Techguys
+              Comprendre la sécurité avancée et le chiffrement derrière Techguys
             </p>
           </div>
 
@@ -28,13 +28,14 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <Lock className="w-8 h-8 mb-2 text-orange-600 dark:text-orange-400" />
-                <CardTitle>Client-Side AES-256-GCM</CardTitle>
-                <CardDescription>Military-grade encryption happens entirely in your browser</CardDescription>
+                <CardTitle>AES-256-GCM côté client</CardTitle>
+                <CardDescription>Un chiffrement de niveau militaire entièrement dans votre navigateur</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 dark:text-gray-300">
-                  We use the Web Crypto API to generate AES-256-GCM encryption keys and encrypt your data locally. The
-                  encryption key never leaves your device and is embedded in the URL fragment.
+                  Nous utilisons l'API Web Crypto pour générer des clés de chiffrement AES-256-GCM et chiffrer vos
+                  données localement. La clé de chiffrement ne quitte jamais votre appareil et est intégrée dans le
+                  fragment d'URL.
                 </p>
               </CardContent>
             </Card>
@@ -42,13 +43,14 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <Key className="w-8 h-8 mb-2 text-orange-600 dark:text-orange-400" />
-                <CardTitle>URL Fragment Key Storage</CardTitle>
-                <CardDescription>Encryption keys are never sent to our servers</CardDescription>
+                <CardTitle>Clés stockées dans le fragment d'URL</CardTitle>
+                <CardDescription>Les clés de chiffrement ne sont jamais envoyées à nos serveurs</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 dark:text-gray-300">
-                  The decryption key is stored in the URL fragment (after #) which is never transmitted to servers. This
-                  ensures true zero-knowledge architecture where we cannot access your data.
+                  La clé de déchiffrement est stockée dans le fragment d'URL (après #), qui n'est jamais transmis aux
+                  serveurs. Cela garantit une véritable architecture zero-knowledge où nous ne pouvons pas accéder à vos
+                  données.
                 </p>
               </CardContent>
             </Card>
@@ -56,13 +58,13 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <Server className="w-8 h-8 mb-2 text-orange-600 dark:text-orange-400" />
-                <CardTitle>Redis Storage with TTL</CardTitle>
-                <CardDescription>Encrypted data stored in Redis with automatic expiration</CardDescription>
+                <CardTitle>Stockage Firestore avec expiration</CardTitle>
+                <CardDescription>Données chiffrées stockées avec expiration automatique</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Only encrypted data is stored in Upstash Redis with automatic TTL expiration. No encryption keys,
-                  metadata, or plaintext data is ever stored on our servers.
+                  Seules les données chiffrées sont stockées dans Firestore avec expiration automatique. Aucune clé de
+                  chiffrement, métadonnée ou donnée en clair n'est jamais stockée sur nos serveurs.
                 </p>
               </CardContent>
             </Card>
@@ -70,13 +72,13 @@ export default function AboutPage() {
             <Card>
               <CardHeader>
                 <Eye className="w-8 h-8 mb-2 text-orange-600 dark:text-orange-400" />
-                <CardTitle>View-Based Auto-Destruction</CardTitle>
-                <CardDescription>Automatic deletion after maximum views reached</CardDescription>
+                <CardTitle>Autodestruction basée sur les vues</CardTitle>
+                <CardDescription>Suppression automatique après le nombre maximum de vues</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Set view limits from 1-10. Once the maximum number of views is reached, the encrypted data is
-                  immediately deleted from Redis with no recovery possible.
+                  Définissez des limites de vues de 1 à 10. Une fois le nombre maximum de vues atteint, les données
+                  chiffrées sont immédiatement supprimées sans possibilité de récupération.
                 </p>
               </CardContent>
             </Card>
@@ -86,36 +88,37 @@ export default function AboutPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="w-6 h-6" />
-                Technical Security Details
+                Détails techniques de sécurité
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2">AES-256-GCM Encryption</h4>
+                <h4 className="font-semibold mb-2">Chiffrement AES-256-GCM</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  We use AES-256-GCM (Galois/Counter Mode) which provides both encryption and authentication. Each
-                  encryption uses a unique 96-bit initialization vector (IV) for maximum security.
+                  Nous utilisons AES-256-GCM (mode Galois/Counter) qui fournit à la fois le chiffrement et
+                  l'authentification. Chaque chiffrement utilise un vecteur d'initialisation (IV) unique de 96 bits pour
+                  une sécurité maximale.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Web Crypto API</h4>
+                <h4 className="font-semibold mb-2">API Web Crypto</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  All cryptographic operations use the browser's native Web Crypto API, which provides
-                  hardware-accelerated, secure random number generation and encryption.
+                  Toutes les opérations cryptographiques utilisent l'API Web Crypto native du navigateur, qui fournit
+                  une génération de nombres aléatoires et un chiffrement sécurisés, accélérés par le matériel.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Zero Server-Side Key Access</h4>
+                <h4 className="font-semibold mb-2">Zéro accès aux clés côté serveur</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Encryption keys are generated client-side and embedded in URL fragments. Since fragments are never
-                  sent to servers, we have zero access to decryption keys.
+                  Les clés de chiffrement sont générées côté client et intégrées dans les fragments d'URL. Comme les
+                  fragments ne sont jamais envoyés aux serveurs, nous n'avons aucun accès aux clés de déchiffrement.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Automatic TTL Expiration</h4>
+                <h4 className="font-semibold mb-2">Expiration automatique</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Redis automatically expires and deletes encrypted data based on TTL. No manual cleanup or maintenance
-                  required.
+                  Firestore supprime automatiquement les données chiffrées à l'expiration. Aucun nettoyage ou
+                  maintenance manuelle n'est requis.
                 </p>
               </div>
             </CardContent>
@@ -123,7 +126,7 @@ export default function AboutPage() {
 
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle>Security Flow Diagram</CardTitle>
+              <CardTitle>Schéma du flux de sécurité</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
@@ -133,8 +136,8 @@ export default function AboutPage() {
                       1
                     </div>
                     <div className="flex-1">
-                      <strong>Client generates AES-256 key</strong>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Web Crypto API generates cryptographically secure key</p>
+                      <strong>Le client génère une clé AES-256</strong>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">L'API Web Crypto génère une clé cryptographiquement sécurisée</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -142,8 +145,8 @@ export default function AboutPage() {
                       2
                     </div>
                     <div className="flex-1">
-                      <strong>Data encrypted client-side</strong>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">AES-256-GCM encryption with unique IV</p>
+                      <strong>Données chiffrées côté client</strong>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Chiffrement AES-256-GCM avec un IV unique</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -151,8 +154,8 @@ export default function AboutPage() {
                       3
                     </div>
                     <div className="flex-1">
-                      <strong>Encrypted data sent to Redis</strong>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Only ciphertext and IV stored, never the key</p>
+                      <strong>Données chiffrées envoyées à Firestore</strong>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Seuls le texte chiffré et l'IV sont stockés, jamais la clé</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -160,8 +163,8 @@ export default function AboutPage() {
                       4
                     </div>
                     <div className="flex-1">
-                      <strong>Key embedded in URL fragment</strong>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Fragment (#) never sent to server</p>
+                      <strong>Clé intégrée dans le fragment d'URL</strong>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Le fragment (#) n'est jamais envoyé au serveur</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -169,8 +172,8 @@ export default function AboutPage() {
                       5
                     </div>
                     <div className="flex-1">
-                      <strong>Client-side decryption</strong>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Recipient's browser decrypts using key from URL</p>
+                      <strong>Déchiffrement côté client</strong>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Le navigateur du destinataire déchiffre à l'aide de la clé de l'URL</p>
                     </div>
                   </div>
                 </div>
@@ -180,31 +183,34 @@ export default function AboutPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Best Practices</CardTitle>
+              <CardTitle>Bonnes pratiques</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2">Use HTTPS Always</h4>
+                <h4 className="font-semibold mb-2">Utilisez toujours HTTPS</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Always share links over HTTPS to prevent man-in-the-middle attacks on the encrypted data.
+                  Partagez toujours les liens via HTTPS pour éviter les attaques de type man-in-the-middle sur les
+                  données chiffrées.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Short Expiration Times</h4>
+                <h4 className="font-semibold mb-2">Durées d'expiration courtes</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Use the shortest reasonable expiration time to minimize the window of exposure.
+                  Utilisez la durée d'expiration la plus courte raisonnable pour minimiser la fenêtre d'exposition.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Single-Use Links</h4>
+                <h4 className="font-semibold mb-2">Liens à usage unique</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Set max views to 1 for maximum security, especially for highly sensitive credentials.
+                  Définissez le nombre de vues à 1 pour une sécurité maximale, surtout pour les identifiants très
+                  sensibles.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Share Complete URLs</h4>
+                <h4 className="font-semibold mb-2">Partagez les URL complètes</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Ensure the complete URL including the fragment (#) is shared - without it, decryption is impossible.
+                  Assurez-vous que l'URL complète incluant le fragment (#) est partagée — sans lui, le déchiffrement
+                  est impossible.
                 </p>
               </div>
             </CardContent>
@@ -213,7 +219,7 @@ export default function AboutPage() {
           <div className="text-center mt-12">
             <Link href="/create">
               <Button size="lg" style={{ backgroundColor: '#D2461E' }} className="hover:opacity-90 text-white">
-                Start Sharing Securely
+                Commencer à partager en sécurité
               </Button>
             </Link>
           </div>

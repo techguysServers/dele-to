@@ -16,7 +16,7 @@ interface PasswordInputProps {
 
 export function PasswordInput({ 
   id, 
-  placeholder = "Enter password", 
+  placeholder = "Entrez le mot de passe", 
   value, 
   onChange, 
   required = false,
@@ -48,12 +48,12 @@ export function PasswordInput({
         tabIndex={-1}
       >
         {showPassword ? (
-          <EyeOff className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+          <EyeOff className="h-4 w-4 text-muted-foreground hover:text-foreground" />
         ) : (
-          <Eye className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+          <Eye className="h-4 w-4 text-muted-foreground hover:text-foreground" />
         )}
         <span className="sr-only">
-          {showPassword ? "Hide password" : "Show password"}
+          {showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
         </span>
       </Button>
     </div>

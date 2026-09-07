@@ -88,11 +88,11 @@ export default function ViewPage({ params }: { params: { id: string } }) {
             requirePassword: shareData.requirePassword,
           })
         } else {
-          setError(result.error || "Failed to load share metadata")
+          setError(result.error || "Impossible de charger les métadonnées du partage")
         }
       }
     } catch (error) {
-      setError("Failed to load share metadata")
+      setError("Impossible de charger les métadonnées du partage")
     }
   }
 
@@ -122,10 +122,10 @@ export default function ViewPage({ params }: { params: { id: string } }) {
           window.history.replaceState({}, document.title, urlWithoutHash)
           
         } catch (error) {
-          setError("Invalid or corrupted encryption key in URL")
+          setError("Clé de chiffrement invalide ou corrompue dans l'URL")
         }
       } else {
-        setError("No encryption key found in URL. Make sure you're using the complete share link.")
+        setError("Aucune clé de chiffrement trouvée dans l'URL. Assurez-vous d'utiliser le lien de partage complet.")
       }
     }
   }
@@ -133,12 +133,12 @@ export default function ViewPage({ params }: { params: { id: string } }) {
   const handleAccess = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!encryptionKey) {
-      setError("Encryption key not available")
+      setError("Clé de chiffrement non disponible")
       return
     }
 
     if (!shareId) {
-      setError("Share ID not available")
+      setError("Identifiant de partage non disponible")
       return
     }
 
@@ -159,13 +159,13 @@ export default function ViewPage({ params }: { params: { id: string } }) {
           setDecryptedContent(decrypted)
           setShowContent(true)
         } catch (decryptError) {
-          setError("Failed to decrypt content. The encryption key may be incorrect or corrupted.")
+          setError("Impossible de déchiffrer le contenu. La clé de chiffrement est peut-être incorrecte ou corrompue.")
         }
       } else {
-        setError(result.error || "Failed to access secure share")
+        setError(result.error || "Impossible d'accéder au partage sécurisé")
       }
     } catch (error) {
-      setError("An unexpected error occurred")
+      setError("Une erreur inattendue s'est produite")
     } finally {
       setIsLoading(false)
     }
@@ -184,15 +184,15 @@ export default function ViewPage({ params }: { params: { id: string } }) {
     const expires = new Date(expiresAt)
     const diff = expires.getTime() - now.getTime()
 
-    if (diff <= 0) return "Expired"
+    if (diff <= 0) return "Expiré"
 
     const hours = Math.floor(diff / (1000 * 60 * 60))
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
 
     if (hours > 0) {
-      return `${hours}h ${minutes}m remaining`
+      return `${hours}h ${minutes}m restants`
     }
-    return `${minutes}m remaining`
+    return `${minutes}m restants`
   }
 
   if (!isClient) {
@@ -200,7 +200,7 @@ export default function ViewPage({ params }: { params: { id: string } }) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p>Loading secure decryption...</p>
+          <p>Chargement du déchiffrement sécurisé...</p>
         </div>
       </div>
     )
@@ -217,9 +217,9 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                   <Shield className="w-8 h-8 text-green-600" />
                 </div>
               </div>
-              <CardTitle className="text-center">{share.title || "Secure Content"}</CardTitle>
+              <CardTitle className="text-center">{share.title || "Contenu sécurisé"}</CardTitle>
               <CardDescription className="text-center">
-                Content decrypted successfully using client-side AES-256 encryption
+                Contenu déchiffré avec succès grâce au chiffrement AES-256 côté client
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -231,13 +231,13 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                 <div className="flex items-center gap-2">
                   <Eye className="w-4 h-4 text-blue-500" />
                   <span className="text-blue-600 dark:text-blue-400 font-medium">
-                    {share.currentViews}/{share.maxViews} views
+                    {share.currentViews}/{share.maxViews} vues
                   </span>
                 </div>
               </div>
 
               <div>
-                <Label>Decrypted Content</Label>
+                <Label>Contenu déchiffré</Label>
                 <div className="mt-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border dark:border-gray-700">
                   <div className="flex justify-between items-start gap-4">
                     <pre className="whitespace-pre-wrap font-mono text-sm flex-1 break-all text-gray-900 dark:text-gray-100">{decryptedContent}</pre>
@@ -245,29 +245,29 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                       <Copy className="w-4 h-4" />
                     </Button>
                   </div>
-                  {copied && <p className="text-sm text-green-600 mt-2">Copied to clipboard!</p>}
+                  {copied && <p className="text-sm text-green-600 mt-2">Copié dans le presse-papiers !</p>}
                 </div>
               </div>
 
               <Alert>
                 <Key className="w-4 h-4" />
                 <AlertDescription>
-                  <strong>Security Notice:</strong> This content was decrypted locally in your browser. The server never
-                  had access to your unencrypted data or the decryption key.
+                  <strong>Avis de sécurité :</strong> Ce contenu a été déchiffré localement dans votre navigateur. Le
+                  serveur n'a jamais eu accès à vos données non chiffrées ni à la clé de déchiffrement.
                 </AlertDescription>
               </Alert>
 
               <Alert>
                 <AlertTriangle className="w-4 h-4" />
                 <AlertDescription>
-                  <strong>Important:</strong> This content has been viewed and may be automatically destroyed based on
-                  the expiration settings. Save it securely if needed.
+                  <strong>Important :</strong> Ce contenu a été consulté et peut être automatiquement détruit selon
+                  les paramètres d'expiration. Sauvegardez-le en sécurité si nécessaire.
                 </AlertDescription>
               </Alert>
 
               <div className="text-center">
                 <Link href="/create">
-                  <Button>Create Your Own Secure Share</Button>
+                  <Button>Créer votre propre partage sécurisé</Button>
                 </Link>
               </div>
             </CardContent>
@@ -287,13 +287,13 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                 <Shield className="w-8 h-8 text-blue-600" />
               </div>
             </div>
-            <CardTitle>Access Secure Content</CardTitle>
+            <CardTitle>Accéder au contenu sécurisé</CardTitle>
             <CardDescription>
-              {metadata?.title && `Accessing: ${metadata.title}`}
+              {metadata?.title && `Accès à : ${metadata.title}`}
               <br />
-              Share ID: {shareId}
+              ID du partage : {shareId}
               <br />
-              Client-side decryption with AES-256
+              Déchiffrement côté client avec AES-256
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -309,7 +309,7 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                   <div className="flex items-center gap-2">
                     <Eye className="w-4 h-4 text-blue-500" />
                     <span className="text-blue-600 dark:text-blue-400 font-medium">
-                      {metadata.currentViews}/{metadata.maxViews} views
+                      {metadata.currentViews}/{metadata.maxViews} vues
                     </span>
                   </div>
                 </div>
@@ -319,10 +319,10 @@ export default function ViewPage({ params }: { params: { id: string } }) {
             <form onSubmit={handleAccess} className="space-y-4">
               {metadata?.requirePassword && (
                 <div>
-                  <Label htmlFor="password">Access Password</Label>
+                  <Label htmlFor="password">Mot de passe d'accès</Label>
                   <PasswordInput
                     id="password"
-                    placeholder="Enter the required password"
+                    placeholder="Saisissez le mot de passe requis"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -334,11 +334,11 @@ export default function ViewPage({ params }: { params: { id: string } }) {
                 <Alert variant="destructive">
                   <AlertTriangle className="w-4 h-4" />
                   <AlertDescription>
-                    No encryption key found in URL. Make sure you're using the complete share link including the
-                    fragment (#) part.
+                    Aucune clé de chiffrement trouvée dans l'URL. Assurez-vous d'utiliser le lien de partage complet,
+                    y compris la partie fragment (#).
                     <br />
                     <br />
-                    <strong>Expected URL format:</strong>
+                    <strong>Format d'URL attendu :</strong>
                     <br />
                     <code className="text-xs">https://ardd.cloud/view/[id]#[encryption-key]</code>
                   </AlertDescription>
@@ -353,21 +353,21 @@ export default function ViewPage({ params }: { params: { id: string } }) {
               )}
 
               <Button type="submit" className="w-full" disabled={isLoading || !encryptionKey}>
-                {isLoading ? "Decrypting..." : "Access Content"}
+                {isLoading ? "Déchiffrement..." : "Accéder au contenu"}
               </Button>
             </form>
 
             <Alert className="mt-4">
               <Key className="w-4 h-4" />
               <AlertDescription>
-                <strong>Zero-Knowledge:</strong> Decryption happens entirely in your browser. The server never sees your
-                encryption key or decrypted content.
+                <strong>Zero-knowledge :</strong> Le déchiffrement se fait entièrement dans votre navigateur. Le serveur
+                ne voit jamais votre clé de chiffrement ni le contenu déchiffré.
               </AlertDescription>
             </Alert>
 
             <div className="mt-6 text-center">
               <Link href="/create">
-                <Button variant="outline">Create Your Own Secure Share</Button>
+                <Button variant="outline">Créer votre propre partage sécurisé</Button>
               </Link>
             </div>
           </CardContent>

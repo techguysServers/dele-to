@@ -70,12 +70,12 @@ export async function createSecureShare(data: {
     // Validate input data
     if (!data.encryptedContent || !data.iv) {
       logError("❌ Missing encrypted content or IV")
-      return { success: false, error: "Missing encrypted content or IV" }
+      return { success: false, error: "Contenu chiffré ou IV manquant" }
     }
 
     if (data.maxViews < 1 || data.maxViews > 100) {
       logError("❌ Invalid max views count:", data.maxViews)
-      return { success: false, error: "Invalid max views count" }
+      return { success: false, error: "Nombre de vues invalide" }
     }
 
     const id = generateShareId(data.linkType || "standard")
@@ -88,7 +88,7 @@ export async function createSecureShare(data: {
     // Ensure expiration is in the future
     if (expiresAt <= now) {
       logError("❌ Invalid expiration time - in the past")
-      return { success: false, error: "Invalid expiration time" }
+      return { success: false, error: "Durée d'expiration invalide" }
     }
 
     const share: ShareData = {
@@ -110,7 +110,7 @@ export async function createSecureShare(data: {
 
     if (ttlSeconds <= 0) {
       logError("❌ Invalid TTL calculation:", ttlSeconds)
-      return { success: false, error: "Invalid TTL calculation" }
+      return { success: false, error: "Calcul de durée invalide" }
     }
 
     const key = `share:${id}`
@@ -120,7 +120,7 @@ export async function createSecureShare(data: {
 
     if (!stored) {
       logError("❌ Failed to store data in any storage system")
-      return { success: false, error: "Failed to store secure share" }
+      return { success: false, error: "Impossible d'enregistrer le partage sécurisé" }
     }
 
     // Immediate verification - try to retrieve what we just stored
@@ -140,7 +140,7 @@ export async function createSecureShare(data: {
     return { success: true, id }
   } catch (error) {
     logError("❌ Error creating secure share:", error)
-    return { success: false, error: "Failed to create secure share" }
+    return { success: false, error: "Impossible de créer le partage sécurisé" }
   }
 }
 
@@ -150,7 +150,7 @@ export async function getSecureShare(id: string, password?: string) {
   try {
     if (!id || typeof id !== "string") {
       logError("❌ Invalid share ID:", id)
-      return { success: false, error: "Invalid share ID" }
+      return { success: false, error: "Identifiant de partage invalide" }
     }
 
     const key = `share:${id}`
@@ -160,7 +160,7 @@ export async function getSecureShare(id: string, password?: string) {
 
     if (!share) {
       logError(`❌ Share not found for ID: ${id}`)
-      return { success: false, error: "Share not found or has expired" }
+      return { success: false, error: "Partage introuvable ou expiré" }
     }
 
     log(`✅ Found share: ${share.id}, views: ${share.currentViews}/${share.maxViews}`)
@@ -169,18 +169,18 @@ export async function getSecureShare(id: string, password?: string) {
     if (share.currentViews >= share.maxViews) {
       log("⚠️ Max views reached, deleting share")
       await deleteData(key)
-      return { success: false, error: "This share has reached its maximum view limit" }
+      return { success: false, error: "Ce partage a atteint sa limite de vues" }
     }
 
     // Check password if required
     if (share.requirePassword) {
       if (!password) {
         log("🔒 Password required but not provided")
-        return { success: false, error: "Password required" }
+        return { success: false, error: "Mot de passe requis" }
       }
       if (share.passwordHash !== hashPassword(password)) {
         log("❌ Incorrect password provided")
-        return { success: false, error: "Incorrect password" }
+        return { success: false, error: "Mot de passe incorrect" }
       }
     }
 
@@ -219,7 +219,7 @@ export async function getSecureShare(id: string, password?: string) {
     }
   } catch (error) {
     logError("❌ Error getting secure share:", error)
-    return { success: false, error: "Failed to retrieve secure share" }
+    return { success: false, error: "Impossible de récupérer le partage sécurisé" }
   }
 }
 
@@ -229,7 +229,7 @@ export async function getShareMetadata(id: string) {
   try {
     if (!id || typeof id !== "string") {
       logError("❌ Invalid share ID for metadata:", id)
-      return { success: false, error: "Invalid share ID" }
+      return { success: false, error: "Identifiant de partage invalide" }
     }
 
     const key = `share:${id}`
@@ -239,7 +239,7 @@ export async function getShareMetadata(id: string) {
 
     if (!share) {
       logError(`❌ Share metadata not found for ID: ${id}`)
-      return { success: false, error: "Share not found or has expired" }
+      return { success: false, error: "Partage introuvable ou expiré" }
     }
 
     log(`✅ Found metadata for share: ${share.id}`)
@@ -258,6 +258,6 @@ export async function getShareMetadata(id: string) {
     }
   } catch (error) {
     logError("❌ Error getting share metadata:", error)
-    return { success: false, error: "Failed to retrieve share metadata" }
+    return { success: false, error: "Impossible de récupérer les métadonnées du partage" }
   }
 }

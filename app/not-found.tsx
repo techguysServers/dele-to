@@ -8,81 +8,81 @@ import Link from "next/link"
 
 const notFoundMessages = [
   {
-    title: "Poof! It's gone.",
-    description: "Just like your burnable links, this page has self-destructed.",
-    buttonText: "Back to safety →",
+    title: "Pouf ! C'est parti.",
+    description: "Comme vos liens éphémères, cette page s'est autodétruite.",
+    buttonText: "Retour en sécurité →",
     emoji: "💨"
   },
   {
-    title: "This link has already burned.",
-    description: "We'd show you the page, but it's already reduced to digital ashes.",
-    buttonText: "Generate a new one",
+    title: "Ce lien a déjà brûlé.",
+    description: "On vous montrerait la page, mais elle n'est plus que des cendres numériques.",
+    buttonText: "Générer un nouveau",
     emoji: "🔥"
   },
   {
-    title: "Erase complete.",
-    description: "You found a 404 — which means the page has been wiped clean.",
-    buttonText: "Undo? Just kidding.",
+    title: "Effacement terminé.",
+    description: "Vous avez trouvé une 404 — la page a été effacée.",
+    buttonText: "Annuler ? Blague.",
     emoji: "🗑️"
   },
   {
-    title: "One-time view… used up.",
-    description: "This page was meant to be seen once, and someone beat you to it.",
-    buttonText: "Start over",
+    title: "Vue unique… déjà utilisée.",
+    description: "Cette page devait être vue une seule fois, et quelqu'un vous a devancé.",
+    buttonText: "Recommencer",
     emoji: "⏳"
   },
   {
-    title: "File Shredded.",
-    description: "We triple-checked. The bits are gone. The bytes are gone. Even the crumbs are gone.",
-    buttonText: "Back to Techguys",
+    title: "Fichier détruit.",
+    description: "On a vérifié trois fois. Les bits sont partis. Les octets aussi. Même les miettes.",
+    buttonText: "Retour à Techguys",
     emoji: "🪓"
   },
   {
-    title: "This page expired… a long time ago.",
-    description: "We'd retrieve it, but it's somewhere in the great /dev/null in the sky.",
-    buttonText: "Find something still alive →",
+    title: "Cette page a expiré… il y a longtemps.",
+    description: "On la récupérerait, mais elle est quelque part dans le grand /dev/null du ciel.",
+    buttonText: "Trouver quelque chose de vivant →",
     emoji: "⌛"
   },
   {
-    title: "Your request has been securely shredded.",
-    description: "Congratulations, you've stumbled upon a 404-grade secure deletion.",
-    buttonText: "Try again",
+    title: "Votre requête a été détruite en toute sécurité.",
+    description: "Félicitations, vous êtes tombé sur une suppression sécurisée de niveau 404.",
+    buttonText: "Réessayer",
     emoji: "🗜️"
   },
   {
-    title: "Self-destruct sequence complete.",
-    description: "You missed it. It was glorious. There were sparks. There was smoke.",
-    buttonText: "Generate a new link",
+    title: "Séquence d'autodestruction terminée.",
+    description: "Vous l'avez manquée. C'était magnifique. Il y avait des étincelles. De la fumée.",
+    buttonText: "Générer un nouveau lien",
     emoji: "💣"
   },
   {
-    title: "Access revoked.",
-    description: "Either the link burned, or it never existed. We'll never tell.",
-    buttonText: "Return home",
+    title: "Accès révoqué.",
+    description: "Soit le lien a brûlé, soit il n'a jamais existé. On ne vous le dira jamais.",
+    buttonText: "Retour à l'accueil",
     emoji: "🔒"
   },
   {
-    title: "Erased beyond recovery.",
-    description: "Not even forensic data recovery could help you here.",
-    buttonText: "Clean start",
+    title: "Effacé au-delà de toute récupération.",
+    description: "Même la récupération forensique de données ne pourrait rien pour vous ici.",
+    buttonText: "Nouveau départ",
     emoji: "🧹"
   },
   {
-    title: "Digital ashes remain.",
-    description: "The data? Gone. The URL? Gone. Your curiosity? Still here.",
-    buttonText: "Back to Techguys",
+    title: "Il ne reste que des cendres numériques.",
+    description: "Les données ? Parties. L'URL ? Partie. Votre curiosité ? Toujours là.",
+    buttonText: "Retour à Techguys",
     emoji: "🌫️"
   },
   {
-    title: "Mission scrubbed.",
-    description: "Page was here. Now it's gone. Mission success.",
-    buttonText: "Restart mission",
+    title: "Mission effacée.",
+    description: "La page était là. Maintenant elle est partie. Mission accomplie.",
+    buttonText: "Relancer la mission",
     emoji: "🛰️"
   },
   {
-    title: "Link went up in smoke.",
-    description: "It was here one moment… ...and gone faster than your internet provider's promises.",
-    buttonText: "Home base",
+    title: "Le lien est parti en fumée.",
+    description: "Il était là un instant… …et parti plus vite que les promesses de votre fournisseur internet.",
+    buttonText: "Base d'accueil",
     emoji: "💨"
   }
 ]
@@ -93,19 +93,16 @@ export default function NotFound() {
 
   useEffect(() => {
     setIsClient(true)
-    // Show a random message
     const randomIndex = Math.floor(Math.random() * notFoundMessages.length)
     setCurrentMessage(notFoundMessages[randomIndex])
   }, [])
-
-
 
   if (!isClient) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-4"></div>
-          <p>Loading...</p>
+          <p>Chargement...</p>
         </div>
       </div>
     )
@@ -144,15 +141,15 @@ export default function NotFound() {
               <Link href="/create" className="w-full">
                 <Button variant="outline" size="lg" className="w-full">
                   <Plus className="w-4 h-4 mr-2" />
-                  Create New Share
+                  Créer un nouveau partage
                 </Button>
               </Link>
             </div>
 
             <div className="mt-8 p-4 rounded-lg bg-red-50 border border-red-600">
               <p className="text-sm text-red-700">
-                <strong>Lost?</strong> Don't worry, your secrets are still safe. 
-                This page just self-destructed.
+                <strong>Perdu ?</strong> Ne vous inquiétez pas, vos secrets sont toujours en sécurité.
+                Cette page vient juste de s'autodétruire.
               </p>
             </div>
           </CardContent>

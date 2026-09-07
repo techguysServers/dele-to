@@ -9,7 +9,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "Techguys - Partage de secrets",
-	description: "Secure credential sharing with client-side AES-256 encryption",
+	description: "Partage sécurisé de secrets avec chiffrement AES-256 côté client",
 	robots: {
 		index: false,
 		follow: false,
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
 
 	openGraph: {
 		title: "Techguys - Partage de secrets",
-		description: "Secure credential sharing with client-side AES-256 encryption",
+		description: "Partage sécurisé de secrets avec chiffrement AES-256 côté client",
 		images: ["/SEO.png"],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "Techguys - Partage de secrets",
-		description: "Secure credential sharing with client-side AES-256 encryption",
+		description: "Partage sécurisé de secrets avec chiffrement AES-256 côté client",
 		images: ["/SEO.png"],
 	},
 };
@@ -42,7 +42,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="fr" suppressHydrationWarning>
 			<head />
 			<body
 				className={`min-h-screen flex flex-col ${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable}`}

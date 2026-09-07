@@ -7,36 +7,36 @@ import { Button } from "@/components/ui/button"
 
 const accessTips = [
     {
-        title: "Verify the Sender",
-        description: "Confirm this link came from a trusted source through a separate communication channel before accessing."
+        title: "Vérifiez l'expéditeur",
+        description: "Confirmez que ce lien provient d'une source de confiance par un canal de communication séparé avant d'y accéder."
     },
     {
-        title: "Use a Secure Environment",
-        description: "Access sensitive shares from a private device on a trusted network, not public computers or WiFi."
+        title: "Utilisez un environnement sécurisé",
+        description: "Accédez aux partages sensibles depuis un appareil privé sur un réseau de confiance, pas depuis un ordinateur public ou un Wi-Fi ouvert."
     },
     {
-        title: "Clear After Use",
-        description: "Clear your browser history and clipboard after accessing to remove traces of the decryption key."
+        title: "Effacez après utilisation",
+        description: "Effacez l'historique de votre navigateur et le presse-papiers après l'accès pour supprimer les traces de la clé de déchiffrement."
     },
     {
-        title: "Act Quickly",
-        description: "Access the content promptly as it may have a short expiration time or limited view count."
+        title: "Agissez rapidement",
+        description: "Accédez au contenu promptement, car il peut avoir une courte durée d'expiration ou un nombre de vues limité."
     },
     {
-        title: "Don't Share the Link",
-        description: "This complete URL contains the decryption key. Never forward it to others or post it anywhere."
+        title: "Ne partagez pas le lien",
+        description: "Cette URL complète contient la clé de déchiffrement. Ne la transférez jamais à d'autres personnes et ne la publiez nulle part."
     },
     {
-        title: "Save Securely",
-        description: "If you need to save the content, use a secure password manager or encrypted storage, not plain text files."
+        title: "Sauvegardez en toute sécurité",
+        description: "Si vous devez conserver le contenu, utilisez un gestionnaire de mots de passe sécurisé ou un stockage chiffré, pas des fichiers texte brut."
     },
     {
-        title: "Watch for Phishing",
-        description: "Verify the domain matches the expected Techguys instance. Attackers may create fake lookalikes."
+        title: "Méfiez-vous du hameçonnage",
+        description: "Vérifiez que le domaine correspond à l'instance Techguys attendue. Des attaquants peuvent créer de fausses copies."
     },
     {
-        title: "One-Time Access",
-        description: "Many shares are set to 'burn after reading' - they'll be permanently destroyed after you view them."
+        title: "Accès unique",
+        description: "De nombreux partages sont configurés en « destruction après lecture » — ils seront définitivement détruits après votre consultation."
     }
 ]
 
@@ -45,14 +45,12 @@ export function AccessTips() {
     const [isVisible, setIsVisible] = useState(false)
 
     useEffect(() => {
-        // Show a random tip after a short delay
         const timer = setTimeout(() => {
-            // Use a deterministic approach to avoid hydration mismatch
             const randomIndex = Math.floor(Math.random() * accessTips.length)
             const randomTip = accessTips[randomIndex]
             setCurrentTip(randomTip)
             setIsVisible(true)
-        }, 200) // Show after 0.2 seconds
+        }, 200)
 
         return () => clearTimeout(timer)
     }, [])
@@ -77,7 +75,7 @@ export function AccessTips() {
                 <Lightbulb className="h-5 w-5 mt-0.5 flex-shrink-0 text-red-600" />
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <h4 className="font-semibold text-sm text-red-900">💡 Access Tip: {currentTip.title}</h4>
+                        <h4 className="font-semibold text-sm text-red-900">💡 Conseil d'accès : {currentTip.title}</h4>
                         <div className="flex items-center gap-2">
                             <Button
                                 type="button"
@@ -85,9 +83,9 @@ export function AccessTips() {
                                 size="sm"
                                 onClick={getNewTip}
                                 className="h-6 px-2 text-xs hover:opacity-80 text-red-600"
-                                aria-label="Get new access tip"
+                                aria-label="Obtenir un nouveau conseil d'accès"
                             >
-                                New Tip
+                                Nouveau conseil
                             </Button>
                             <Button
                                 type="button"
@@ -95,8 +93,8 @@ export function AccessTips() {
                                 size="sm"
                                 onClick={dismissTip}
                                 className="h-6 w-6 p-0 hover:opacity-80 text-red-600"
-                                aria-label="Dismiss tip"
-                                title="Dismiss tip"
+                                aria-label="Fermer le conseil"
+                                title="Fermer le conseil"
                             >
                                 <X className="h-3 w-3" aria-hidden="true" />
                             </Button>
