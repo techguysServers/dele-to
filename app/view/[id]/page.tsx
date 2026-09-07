@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,7 +35,8 @@ interface ShareMetadata {
 	requirePassword: boolean;
 }
 
-export default function ViewPage({ params }: { params: { id: string } }) {
+export default function ViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: paramId } = use(params)
 	const [shareId, setShareId] = useState<string>("");
 	const [share, setShare] = useState<SecureShare | null>(null);
 	const [metadata, setMetadata] = useState<ShareMetadata | null>(null);
@@ -52,7 +53,7 @@ export default function ViewPage({ params }: { params: { id: string } }) {
 		const initializePage = async () => {
 			setIsClient(true);
 
-			const id = params.id;
+			const id = paramId;
 			setShareId(id);
 
 			if (id) {
@@ -62,7 +63,7 @@ export default function ViewPage({ params }: { params: { id: string } }) {
 		};
 
 		initializePage();
-	}, [params.id]);
+	}, [paramId]);
 
 	const loadMetadata = async (id: string) => {
 		try {

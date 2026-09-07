@@ -1,0 +1,6 @@
+packages:
+  - '.'
+
+overrides:
+  tmp: '>=0.2.4'
+  d3-color: '>=3.1.0'

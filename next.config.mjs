@@ -15,9 +15,6 @@ const cspHeader = `
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -25,15 +22,7 @@ const nextConfig = {
     unoptimized: true,
   },
   compress: true,
-  serverComponentsExternalPackages: ['@google-cloud/firestore'],
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.externals.push({
-        "@google-cloud/firestore": "commonjs @google-cloud/firestore",
-      })
-    }
-    return config
-  },
+  serverExternalPackages: ['@google-cloud/firestore'],
   async headers() {
     return [
       {

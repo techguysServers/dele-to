@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { use, useEffect } from "react"
 import { sdk } from '@farcaster/miniapp-sdk'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,7 +8,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, Key } from "lucide-react"
 import Link from "next/link"
 
-export default function MiniAppViewPage({ params }: { params: { id: string } }) {
+export default function MiniAppViewPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   useEffect(() => {
     const initializeMiniApp = async () => {
       try {
@@ -52,13 +53,13 @@ export default function MiniAppViewPage({ params }: { params: { id: string } }) 
               
               <div className="text-center">
                 <p className="text-gray-600 mb-4">
-                  Share ID: <code className="bg-gray-100 px-2 py-1 rounded">{params.id}</code>
+                  Share ID: <code className="bg-gray-100 px-2 py-1 rounded">{id}</code>
                 </p>
                 <p className="text-gray-600">
                   This is a simplified version for the Farcaster MiniApp. 
                   Visit the full site for complete functionality.
                 </p>
-                <Link href={`/view/${params.id}`} target="_blank" rel="noopener noreferrer">
+                <Link href={`/view/${id}`} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="mt-2">
                     Open Full Version
                   </Button>
