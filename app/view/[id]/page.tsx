@@ -203,7 +203,7 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 
 	if (!isClient) {
 		return (
-			<div className="min-h-screen flex items-center justify-center">
+			<div className="flex items-center justify-center">
 				<div className="text-center">
 					<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
 					<p>Chargement du déchiffrement sécurisé...</p>
@@ -214,7 +214,7 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 
 	if (showContent && share) {
 		return (
-			<div className="min-h-screen p-4">
+			<div className="p-4">
 				<div className="container mx-auto max-w-2xl py-16">
 					<Card>
 						<CardHeader>
@@ -292,7 +292,7 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 	}
 
 	return (
-		<div className="min-h-screen p-4">
+		<div className="p-4">
 			<div className="container mx-auto max-w-md py-16">
 				<Card>
 					<CardHeader className="text-center">

@@ -245,7 +245,7 @@ export function CreateSecretPage() {
 
 	if (generatedLinks.length > 0) {
 		return (
-			<div className="min-h-screen p-4">
+			<div className="p-4">
 				<Header />
 				<div className="container mx-auto max-w-4xl py-16">
 					<Card>
@@ -396,7 +396,7 @@ export function CreateSecretPage() {
 										});
 										setRecipients([]);
 									}}
-									className="w-full bg-red-600 hover:bg-red-700 text-white"
+									className="w-full"
 								>
 									Créer un autre
 								</Button>
@@ -416,7 +416,7 @@ export function CreateSecretPage() {
 
 	if (!isClient) {
 		return (
-			<div className="min-h-screen flex items-center justify-center">
+			<div className="flex items-center justify-center">
 				<div className="text-center">
 					<div className="animate-spin rounded-full h-8 w-8 mx-auto mb-4"></div>
 					<p>Chargement du chiffrement sécurisé...</p>
@@ -426,7 +426,7 @@ export function CreateSecretPage() {
 	}
 
 	return (
-		<div className="min-h-screen p-4">
+		<div className="p-4">
 			<Header />
 			<div className="container mx-auto max-w-2xl py-8">
 				<div className="flex flex-col items-center text-center mb-8">
@@ -883,7 +883,7 @@ export function CreateSecretPage() {
 
 							<Button
 								type="submit"
-								className="w-full bg-red-600 hover:bg-red-700 text-white"
+								className="w-full"
 								disabled={isLoading}
 							>
 								{isLoading

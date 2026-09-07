@@ -12,7 +12,7 @@ export default function MiniAppCreatePage() {
   return (
     <>
       <FarcasterReady />
-      <div className="min-h-screen p-4">
+      <div className="p-4">
       <div className="container mx-auto max-w-2xl py-8">
         <div className="mb-6">
           <Link href="/miniapp">

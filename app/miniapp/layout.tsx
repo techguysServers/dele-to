@@ -23,7 +23,7 @@ export default function MiniAppLayout({
     return (
         <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
             <head />
-            <body className={`min-h-screen ${GeistSans.className}`}>
+            <body className={`${GeistSans.className}`}>
                 {children}
             </body>
         </html>

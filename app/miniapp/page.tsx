@@ -12,7 +12,7 @@ export default function MiniAppPage() {
     return (
         <>
             <FarcasterReady />
-            <div className="min-h-screen">
+            <div>
                 <div className="container mx-auto px-4 py-16">
                     <div className="text-center mb-16">
                         <div className="flex justify-center mb-6">
@@ -28,7 +28,7 @@ export default function MiniAppPage() {
                         </p>
                         <div className="flex gap-4 justify-center">
                             <Link href="/create">
-                                <Button size="lg" style={{ backgroundColor: '#D2461E' }} className="hover:opacity-90 text-white">
+                                <Button size="lg">
                                     Share Securely
                                 </Button>
                             </Link>

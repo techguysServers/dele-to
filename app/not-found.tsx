@@ -99,7 +99,7 @@ export default function NotFound() {
 
   if (!isClient) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-4"></div>
           <p>Chargement...</p>
@@ -109,7 +109,7 @@ export default function NotFound() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <Card className="text-center">
           <CardHeader>
@@ -131,7 +131,7 @@ export default function NotFound() {
               <Link href="/" className="w-full">
                 <Button 
                   size="lg" 
-                  className="w-full text-white hover:opacity-90 bg-red-600"
+                  className="w-full"
                 >
                   <Home className="w-4 h-4 mr-2" />
                   {currentMessage.buttonText}
