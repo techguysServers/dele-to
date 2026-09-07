@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
 	Copy,
+	Check,
 	Shield,
 	Key,
 	RefreshCw,
@@ -159,7 +160,9 @@ export function CreateSecretPage() {
 
 		for (const recipient of recipientsToProcess) {
 			if (recipient.requirePassword && !recipient.password.trim()) {
-				setError(`Veuillez saisir un mot de passe pour ${recipient.name} ou désactiver la protection par mot de passe`);
+				setError(
+					`Veuillez saisir un mot de passe pour ${recipient.name} ou désactiver la protection par mot de passe`,
+				);
 				return;
 			}
 		}
@@ -295,7 +298,11 @@ export function CreateSecretPage() {
 														variant="outline"
 														size="sm"
 													>
-														<Copy className="w-4 h-4" />
+														{copiedLinkId === link.recipientId ? (
+															<Check className="w-4 h-4 text-green-600" />
+														) : (
+															<Copy className="w-4 h-4" />
+														)}
 													</Button>
 													<Button
 														onClick={() =>
@@ -310,9 +317,6 @@ export function CreateSecretPage() {
 														<QrCode className="w-4 h-4" />
 													</Button>
 												</div>
-												{copiedLinkId === link.recipientId && (
-													<p className="text-sm text-green-600 mt-1">Copié dans le presse-papiers !</p>
-												)}
 											</CardContent>
 										</Card>
 									))}
@@ -337,7 +341,11 @@ export function CreateSecretPage() {
 												}
 												variant="outline"
 											>
-												<Copy className="w-4 h-4" />
+												{copiedLinkId === generatedLinks[0].recipientId ? (
+													<Check className="w-4 h-4 text-green-600" />
+												) : (
+													<Copy className="w-4 h-4" />
+												)}
 											</Button>
 											<Button
 												onClick={() => openQrModal(generatedLinks[0].shareLink, formData.title)}
@@ -346,19 +354,16 @@ export function CreateSecretPage() {
 												<QrCode className="w-4 h-4" />
 											</Button>
 										</div>
-										{copiedLinkId === generatedLinks[0].recipientId && (
-											<p className="text-sm text-green-600 mt-1">Copié dans le presse-papiers !</p>
-										)}
-									</div>
+										</div>
 								</div>
 							)}
 
 							<Alert>
 								<Key className="w-4 h-4" />
 								<AlertDescription>
-									<strong>Avis de sécurité :</strong> La clé de déchiffrement est incluse dans le fragment d'URL
-									(#) et n'est jamais envoyée à nos serveurs. Ne partagez chaque lien complet qu'avec son
-									destinataire prévu.
+									<strong>Avis de sécurité :</strong> La clé de déchiffrement est incluse dans le
+									fragment d'URL (#) et n'est jamais envoyée à nos serveurs. Ne partagez chaque lien
+									complet qu'avec son destinataire prévu.
 								</AlertDescription>
 							</Alert>
 
@@ -431,9 +436,6 @@ export function CreateSecretPage() {
 				<Card>
 					<CardHeader>
 						<CardTitle>Créer un partage sécurisé</CardTitle>
-						<CardDescription>
-							Chiffrez et partagez des informations sensibles avec le chiffrement AES-256 côté client
-						</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<form onSubmit={handleSubmit} className="space-y-6">
@@ -471,9 +473,9 @@ export function CreateSecretPage() {
 								</p>
 								<InlineTip className="mt-2">
 									<span className="text-xs text-muted-foreground">
-										<strong>Conseil :</strong> Pour les identifiants de connexion, envisagez de partager le nom
-										d'utilisateur, le mot de passe et les détails du serveur dans des liens séparés pour une
-										meilleure isolation de sécurité.
+										<strong>Conseil :</strong> Pour les identifiants de connexion, envisagez de
+										partager le nom d'utilisateur, le mot de passe et les détails du serveur dans
+										des liens séparés pour une meilleure isolation de sécurité.
 									</span>
 								</InlineTip>
 							</div>
@@ -569,8 +571,8 @@ export function CreateSecretPage() {
 													</Badge>
 												</div>
 												<p className="text-sm text-muted-foreground">
-													Chiffrez une fois, générez plusieurs liens pour différents destinataires (max.
-													3)
+													Chiffrez une fois, générez plusieurs liens pour différents
+													destinataires (max. 3)
 												</p>
 											</div>
 											<Switch
@@ -587,8 +589,8 @@ export function CreateSecretPage() {
 												<Users className="w-4 h-4" />
 												<AlertDescription>
 													<strong>Mode multi-destinataires :</strong> Votre contenu sera
-													chiffré une seule fois, mais chaque destinataire recevra son propre lien
-													unique avec des paramètres d'expiration et d'accès individuels.
+													chiffré une seule fois, mais chaque destinataire recevra son propre
+													lien unique avec des paramètres d'expiration et d'accès individuels.
 												</AlertDescription>
 											</Alert>
 										)}
@@ -682,9 +684,7 @@ export function CreateSecretPage() {
 																				<SelectValue />
 																			</SelectTrigger>
 																			<SelectContent>
-																				<SelectItem value="1">
-																					1 vue
-																				</SelectItem>
+																				<SelectItem value="1">1 vue</SelectItem>
 																				<SelectItem value="3">
 																					3 vues
 																				</SelectItem>
@@ -700,7 +700,9 @@ export function CreateSecretPage() {
 																</div>
 
 																<div className="flex items-center justify-between mb-2">
-																	<Label className="text-sm">Exiger un mot de passe</Label>
+																	<Label className="text-sm">
+																		Exiger un mot de passe
+																	</Label>
 																	<Switch
 																		checked={recipient.requirePassword}
 																		onCheckedChange={(checked) =>
@@ -829,8 +831,9 @@ export function CreateSecretPage() {
 															</Button>
 														</div>
 														<p className="text-sm text-muted-foreground mt-1">
-															Cliquez sur le bouton d'actualisation pour générer un mot de passe aléatoire
-															sécurisé. Utilisez l'icône en forme d'œil pour afficher le mot de passe.
+															Cliquez sur le bouton d'actualisation pour générer un mot de
+															passe aléatoire sécurisé. Utilisez l'icône en forme d'œil
+															pour afficher le mot de passe.
 														</p>
 													</div>
 												)}

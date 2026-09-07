@@ -100,8 +100,8 @@ Edit `.env` with your configuration:
 KV_REST_API_URL=your_redis_url_here
 KV_REST_API_TOKEN=your_redis_token_here
 
-# Security Salt (Change this in production!)
-SALT=your-super-secret-salt-change-me-in-production
+# Note: access-password hashing uses scrypt with a per-record random salt.
+# No global SALT env var is required.
 
 ```
 

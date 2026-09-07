@@ -62,7 +62,17 @@ function shouldUseFirestore(): boolean {
 	if (process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT)
 		out = true
 
-	console.log("Should use Firestore:", out, " (USE_FILE_STORAGE:", process.env.USE_FILE_STORAGE, ", FIRESTORE_EMULATOR_HOST:", process.env.FIRESTORE_EMULATOR_HOST, ", GOOGLE_SERVICE_ACCOUNT_JSON:", process.env.GOOGLE_SERVICE_ACCOUNT_JSON, ", GOOGLE_CLOUD_PROJECT:", process.env.GOOGLE_CLOUD_PROJECT, ", GCLOUD_PROJECT:", process.env.GCLOUD_PROJECT, ", isServerlessProduction:", isServerlessProduction(), ")")
+	// Never log secret values (e.g. GOOGLE_SERVICE_ACCOUNT_JSON contains a private key).
+	// Only log whether each signal is present.
+	log(
+		"Should use Firestore:", out,
+		"(USE_FILE_STORAGE:", process.env.USE_FILE_STORAGE,
+		", FIRESTORE_EMULATOR_HOST:", Boolean(process.env.FIRESTORE_EMULATOR_HOST),
+		", GOOGLE_SERVICE_ACCOUNT_JSON:", Boolean(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
+		", GOOGLE_CLOUD_PROJECT:", process.env.GOOGLE_CLOUD_PROJECT,
+		", GCLOUD_PROJECT:", process.env.GCLOUD_PROJECT,
+		", isServerlessProduction:", isServerlessProduction(), ")",
+	)
 	return out
 }
 

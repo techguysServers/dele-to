@@ -1,6 +1,6 @@
 "use server"
 
-import { randomUUID, randomBytes } from "crypto"
+import { randomUUID, randomBytes, scryptSync, timingSafeEqual } from "crypto"
 import {
   storeData,
   getData,
@@ -15,9 +15,36 @@ const log = DEBUG_ENABLED ? console.log : () => {}
 const logError = DEBUG_ENABLED ? console.error : () => {}
 const logWarn = DEBUG_ENABLED ? console.warn : () => {}
 
+// Password hashing using scrypt (memory-hard KDF) with a per-record random salt.
+// Stored format is self-contained: scrypt$N$saltHex$hashHex
+const SCRYPT_COST = 16384 // N
+const SCRYPT_KEYLEN = 64
+
 function hashPassword(password: string): string {
-  const salt = process.env.SALT || "default-salt-change-in-production"
-  return Buffer.from(password + salt).toString("base64")
+  const salt = randomBytes(16)
+  const derived = scryptSync(password, salt, SCRYPT_KEYLEN, { N: SCRYPT_COST })
+  return `scrypt$${SCRYPT_COST}$${salt.toString("hex")}$${derived.toString("hex")}`
+}
+
+function verifyPassword(password: string, stored: string): boolean {
+  try {
+    const parts = stored.split("$")
+    if (parts.length !== 4 || parts[0] !== "scrypt") return false
+
+    const cost = parseInt(parts[1], 10)
+    const salt = Buffer.from(parts[2], "hex")
+    const expected = Buffer.from(parts[3], "hex")
+
+    if (!Number.isFinite(cost) || salt.length === 0 || expected.length === 0) {
+      return false
+    }
+
+    const derived = scryptSync(password, salt, expected.length, { N: cost })
+    // Both buffers are the same length here, so timingSafeEqual is safe to use.
+    return timingSafeEqual(derived, expected)
+  } catch {
+    return false
+  }
 }
 
 function generateShareId(linkType: string = "standard"): string {
@@ -178,7 +205,7 @@ export async function getSecureShare(id: string, password?: string) {
         log("🔒 Password required but not provided")
         return { success: false, error: "Mot de passe requis" }
       }
-      if (share.passwordHash !== hashPassword(password)) {
+      if (!share.passwordHash || !verifyPassword(password, share.passwordHash)) {
         log("❌ Incorrect password provided")
         return { success: false, error: "Mot de passe incorrect" }
       }
