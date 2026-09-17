@@ -18,6 +18,12 @@ describe("share-storage file fallback", () => {
       ...originalEnv,
       USE_FILE_STORAGE: "true",
       DEBUG_ENABLED: "false",
+      FIRESTORE_EMULATOR_HOST: "",
+      GOOGLE_SERVICE_ACCOUNT_JSON: "",
+      GOOGLE_CLOUD_PROJECT: "",
+      GCLOUD_PROJECT: "",
+      K_SERVICE: "",
+      VERCEL: "",
     }
   })
 
@@ -62,6 +68,31 @@ describe("share-storage file fallback", () => {
     expect(existsSync(storageFile)).toBe(true)
     const content = await readFile(storageFile, "utf-8")
     expect(content).not.toContain("abc-123")
+
+    cwdSpy.mockRestore()
+  })
+
+  it("keeps never-expiring shares in file storage", async () => {
+    const cwdSpy = jest.spyOn(process, "cwd").mockReturnValue(tempDir)
+    const { storeData, getData } = await import("@/lib/share-storage")
+
+    const share = {
+      id: "never-123",
+      title: "Forever",
+      encryptedContent: "encrypted",
+      iv: "iv",
+      expiresAt: "9999-12-31T23:59:59.999Z",
+      maxViews: 10,
+      currentViews: 0,
+      requirePassword: false,
+      createdAt: new Date().toISOString(),
+    }
+
+    const stored = await storeData("share:never-123", share, 0)
+    expect(stored).toBe(true)
+
+    const retrieved = await getData("share:never-123")
+    expect(retrieved).toMatchObject({ id: "never-123", title: "Forever" })
 
     cwdSpy.mockRestore()
   })

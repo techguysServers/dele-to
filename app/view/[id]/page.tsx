@@ -191,6 +191,7 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 		const diff = expires.getTime() - now.getTime();
 
 		if (diff <= 0) return "Expiré";
+		if (expires.getUTCFullYear() >= 9000) return "Illimité";
 
 		const hours = Math.floor(diff / (1000 * 60 * 60));
 		const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -309,8 +310,6 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<AccessTips />
-
 						{metadata && (
 							<div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border dark:border-gray-700">
 								<div className="grid grid-cols-2 gap-4 text-sm">
@@ -386,6 +385,9 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 						</div>
 					</CardContent>
 				</Card>
+				<div className="mt-6">
+					<AccessTips />
+				</div>
 			</div>
 		</div>
 	);

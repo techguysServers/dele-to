@@ -159,6 +159,12 @@ async function saveFileStorage(storage: FileStorage): Promise<void> {
 	}
 }
 
+const NEVER_EXPIRES_MS = Date.UTC(9999, 11, 31, 23, 59, 59, 999)
+
+function resolveExpiresAtMs(ttlSeconds: number): number {
+	return ttlSeconds <= 0 ? NEVER_EXPIRES_MS : Date.now() + ttlSeconds * 1000
+}
+
 function isExpired(expiresAtMs: number): boolean {
 	return expiresAtMs <= Date.now()
 }
@@ -224,9 +230,9 @@ export async function storeData(
 	data: ShareData,
 	ttlSeconds: number,
 ): Promise<boolean> {
-	log(`📦 Storing data with key: ${key}, ID: ${data.id}, TTL: ${ttlSeconds}s`)
+	log(`📦 Storing data with key: ${key}, ID: ${data.id}, TTL: ${ttlSeconds <= 0 ? "infinite" : `${ttlSeconds}s`}`)
 
-	const expiresAt = Date.now() + ttlSeconds * 1000
+	const expiresAt = resolveExpiresAtMs(ttlSeconds)
 	let firestoreStored = false
 	let fileStored = false
 
@@ -299,7 +305,7 @@ export async function updateData(
 ): Promise<void> {
 	log(`🔄 Updating data with key: ${key}`)
 
-	const expiresAt = Date.now() + ttlSeconds * 1000
+	const expiresAt = resolveExpiresAtMs(ttlSeconds)
 
 	await storeInFirestore(key, data, expiresAt)
 

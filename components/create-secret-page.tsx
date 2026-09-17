@@ -280,7 +280,7 @@ export function CreateSecretPage() {
 													{link.recipientName}
 												</CardTitle>
 												<CardDescription className="text-sm">
-													Expire : {link.expirationTime} • Vues max : {link.maxViews}
+													Expire : {link.expirationTime === "never" ? "Illimité" : link.expirationTime} • Vues max : {link.maxViews}
 													{link.requirePassword && " • Protégé par mot de passe"}
 												</CardDescription>
 											</CardHeader>
@@ -502,6 +502,7 @@ export function CreateSecretPage() {
 												<SelectItem value="1h">1 heure</SelectItem>
 												<SelectItem value="24h">24 heures</SelectItem>
 												<SelectItem value="7d">7 jours</SelectItem>
+												<SelectItem value="never">Illimité</SelectItem>
 											</SelectContent>
 										</Select>
 									</div>
@@ -665,6 +666,9 @@ export function CreateSecretPage() {
 																				</SelectItem>
 																				<SelectItem value="7d">
 																					7 jours
+																				</SelectItem>
+																				<SelectItem value="never">
+																					Illimité
 																				</SelectItem>
 																			</SelectContent>
 																		</Select>

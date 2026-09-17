@@ -57,6 +57,12 @@ function generateShareId(linkType: string = "standard"): string {
   }
 }
 
+const NEVER_EXPIRES_MS = Date.UTC(9999, 11, 31, 23, 59, 59, 999)
+
+function isNeverExpires(expiresAt: Date): boolean {
+  return expiresAt.getTime() >= Date.UTC(9000, 0, 1)
+}
+
 function getExpirationTime(timeString: string): Date {
   const now = new Date()
   switch (timeString) {
@@ -68,6 +74,8 @@ function getExpirationTime(timeString: string): Date {
       return new Date(now.getTime() + 24 * 60 * 60 * 1000)
     case "7d":
       return new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+    case "never":
+      return new Date(NEVER_EXPIRES_MS)
     default:
       return new Date(now.getTime() + 60 * 60 * 1000)
   }
@@ -108,12 +116,13 @@ export async function createSecureShare(data: {
     const id = generateShareId(data.linkType || "standard")
     const expiresAt = getExpirationTime(data.expirationTime)
     const now = new Date()
+    const neverExpires = data.expirationTime === "never" || isNeverExpires(expiresAt)
 
     log(`🆔 Generated ${data.linkType || "standard"} ID: ${id}`)
-    log(`⏰ Expiration time: ${expiresAt.toISOString()}`)
+    log(`⏰ Expiration time: ${neverExpires ? "never" : expiresAt.toISOString()}`)
 
     // Ensure expiration is in the future
-    if (expiresAt <= now) {
+    if (!neverExpires && expiresAt <= now) {
       logError("❌ Invalid expiration time - in the past")
       return { success: false, error: "Durée d'expiration invalide" }
     }
@@ -131,11 +140,13 @@ export async function createSecureShare(data: {
       createdAt: now.toISOString(),
     }
 
-    // Calculate TTL in seconds
-    const ttlSeconds = Math.floor((expiresAt.getTime() - now.getTime()) / 1000)
-    log(`⏱️ Calculated TTL: ${ttlSeconds} seconds`)
+    // Calculate TTL in seconds (0 = never expires)
+    const ttlSeconds = neverExpires
+      ? 0
+      : Math.floor((expiresAt.getTime() - now.getTime()) / 1000)
+    log(`⏱️ Calculated TTL: ${neverExpires ? "infinite" : `${ttlSeconds} seconds`}`)
 
-    if (ttlSeconds <= 0) {
+    if (!neverExpires && ttlSeconds <= 0) {
       logError("❌ Invalid TTL calculation:", ttlSeconds)
       return { success: false, error: "Calcul de durée invalide" }
     }
@@ -223,9 +234,11 @@ export async function getSecureShare(id: string, password?: string) {
       // Update the share with new view count
       const expiresAt = new Date(share.expiresAt)
       const now = new Date()
-      const remainingTtl = Math.floor((expiresAt.getTime() - now.getTime()) / 1000)
+      const remainingTtl = isNeverExpires(expiresAt)
+        ? 0
+        : Math.floor((expiresAt.getTime() - now.getTime()) / 1000)
 
-      if (remainingTtl > 0) {
+      if (isNeverExpires(expiresAt) || remainingTtl > 0) {
         await updateData(key, share, remainingTtl)
       }
     }
