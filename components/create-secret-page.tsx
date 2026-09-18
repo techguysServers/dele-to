@@ -565,9 +565,6 @@ export function CreateSecretPage() {
 											<div>
 												<div className="flex items-center gap-2">
 													<Label htmlFor="multiRecipient">Partage multi-destinataires</Label>
-													<Badge variant="outline" className="text-xs px-2 py-1">
-														NEW
-													</Badge>
 												</div>
 												<p className="text-sm text-muted-foreground">
 													Chiffrez une fois, générez plusieurs liens pour différents
