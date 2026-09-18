@@ -36,7 +36,7 @@ interface ShareMetadata {
 }
 
 export default function ViewPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: paramId } = use(params)
+	const { id: paramId } = use(params);
 	const [shareId, setShareId] = useState<string>("");
 	const [share, setShare] = useState<SecureShare | null>(null);
 	const [metadata, setMetadata] = useState<ShareMetadata | null>(null);
@@ -225,9 +225,6 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 								</div>
 							</div>
 							<CardTitle className="text-center">{share.title || "Contenu sécurisé"}</CardTitle>
-							<CardDescription className="text-center">
-								Contenu déchiffré avec succès grâce au chiffrement AES-256 côté client
-							</CardDescription>
 						</CardHeader>
 						<CardContent className="space-y-6">
 							<div className="grid grid-cols-2 gap-4 text-sm">
@@ -303,11 +300,7 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 							</div>
 						</div>
 						<CardTitle>Accéder au contenu sécurisé</CardTitle>
-						<CardDescription>
-							{metadata?.title && `Accès à : ${metadata.title}`}
-							<br />
-							Déchiffrement côté client avec AES-256
-						</CardDescription>
+						<CardDescription>{metadata?.title && `Accès à : ${metadata.title}`}</CardDescription>
 					</CardHeader>
 					<CardContent>
 						{metadata && (

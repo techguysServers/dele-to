@@ -98,7 +98,6 @@ export function CreateSecretPage() {
 
 	const addRecipient = () => {
 		if (!newRecipientName.trim()) return;
-		if (recipients.length >= 3) return;
 
 		const newRecipient: Recipient = {
 			id: crypto.randomUUID(),
@@ -280,7 +279,9 @@ export function CreateSecretPage() {
 													{link.recipientName}
 												</CardTitle>
 												<CardDescription className="text-sm">
-													Expire : {link.expirationTime === "never" ? "Illimité" : link.expirationTime} • Vues max : {link.maxViews}
+													Expire :{" "}
+													{link.expirationTime === "never" ? "Illimité" : link.expirationTime}{" "}
+													• Vues max : {link.maxViews}
 													{link.requirePassword && " • Protégé par mot de passe"}
 												</CardDescription>
 											</CardHeader>
@@ -354,7 +355,7 @@ export function CreateSecretPage() {
 												<QrCode className="w-4 h-4" />
 											</Button>
 										</div>
-										</div>
+									</div>
 								</div>
 							)}
 
@@ -371,8 +372,8 @@ export function CreateSecretPage() {
 								<Shield className="w-4 h-4" />
 								<AlertDescription>
 									<strong>Important :</strong> Chaque lien expirera selon ses paramètres individuels.
-									Vos données sont chiffrées avec AES-256 et ne peuvent être déchiffrées que par une
-									personne disposant du lien complet.
+									Vos données sont chiffrées et ne peuvent être déchiffrées que par une personne
+									disposant du lien complet.
 								</AlertDescription>
 							</Alert>
 
@@ -468,9 +469,6 @@ export function CreateSecretPage() {
 									required
 									rows={4}
 								/>
-								<p className="text-xs text-muted-foreground mt-1">
-									Ce contenu sera chiffré avec AES-256 dans votre navigateur avant la transmission.
-								</p>
 								<InlineTip className="mt-2">
 									<span className="text-xs text-muted-foreground">
 										<strong>Conseil :</strong> Pour les identifiants de connexion, envisagez de
@@ -573,7 +571,7 @@ export function CreateSecretPage() {
 												</div>
 												<p className="text-sm text-muted-foreground">
 													Chiffrez une fois, générez plusieurs liens pour différents
-													destinataires (max. 3)
+													destinataires
 												</p>
 											</div>
 											<Switch
@@ -885,11 +883,7 @@ export function CreateSecretPage() {
 								</CollapsibleContent>
 							</Collapsible>
 
-							<Button
-								type="submit"
-								className="w-full"
-								disabled={isLoading}
-							>
+							<Button type="submit" className="w-full" disabled={isLoading}>
 								{isLoading
 									? "Création des liens sécurisés..."
 									: formData.multiRecipient
