@@ -71,7 +71,7 @@ export function CreateSecretPage() {
 
 	// Single recipient settings (when multiRecipient is false)
 	const [singleRecipientSettings, setSingleRecipientSettings] = useState({
-		expirationTime: "1h",
+		expirationTime: "24h",
 		maxViews: 1,
 		requirePassword: false,
 		password: "",
@@ -390,7 +390,7 @@ export function CreateSecretPage() {
 											multiRecipient: false,
 										});
 										setSingleRecipientSettings({
-											expirationTime: "1h",
+											expirationTime: "24h",
 											maxViews: 1,
 											requirePassword: false,
 											password: "",
