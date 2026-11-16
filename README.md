@@ -416,7 +416,6 @@ secure-share-v2/
 │   └── page.tsx
 ├── components/                # React components
 │   ├── ui/                    # shadcn/ui components
-│   ├── access-tips.tsx
 │   ├── console-message.tsx
 │   ├── farcaster-debug.tsx
 │   ├── farcaster-provider.tsx

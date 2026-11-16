@@ -12,7 +12,6 @@ import { Copy, Check, Eye, Shield, AlertTriangle, Clock, Key } from "lucide-reac
 import Link from "next/link";
 import { getSecureShare, getShareMetadata } from "../../actions/share";
 import { SecureCrypto } from "../../../lib/crypto";
-import { AccessTips } from "@/components/access-tips";
 import { PasswordInput } from "@/components/password-input";
 
 interface SecureShare {
@@ -378,9 +377,6 @@ export default function ViewPage({ params }: { params: Promise<{ id: string }> }
 						</div>
 					</CardContent>
 				</Card>
-				<div className="mt-6">
-					<AccessTips />
-				</div>
 			</div>
 		</div>
 	);
